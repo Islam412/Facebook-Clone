@@ -147,20 +147,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 JAZZMIN_SETTINGS = {
     'site_header': "Facebook Clone",
     'site_brand': "Connecting people together...",
-    'site_logo': "images/logo.png",
-    'copyright':  "All Right Reserved 2023",
-    "welcome_sign": "Welcome to Facebook Clone, Login Now.",
+    'site_logo': "assets/images/logo.png",
+    'copyright':  "All Right Reserved 2024",
+    "welcome_sign": "Welcome to Facebook Admin, Login Now.",
     "topmenu_links": [
-        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
-        {"name": "Company", "url": "/admin/addons/company/"},
-        {"name": "Users", "url": "/admin/userauths/user/"},
+        
     ],
 
     "order_with_respect_to": [
         "core",
-        "core.post",
-        "core.friend",
-        "core.FriendRequest",
         "userauths",
         "addon",
     ],
