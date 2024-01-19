@@ -144,6 +144,40 @@ MEDIA_ROOT=BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+JAZZMIN_SETTINGS = {
+    'site_header': "Facebook Clone",
+    'site_brand': "Connecting people together...",
+    'site_logo': "images/logo.png",
+    'copyright':  "All Right Reserved 2023",
+    "welcome_sign": "Welcome to Facebook Clone, Login Now.",
+    "topmenu_links": [
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Company", "url": "/admin/addons/company/"},
+        {"name": "Users", "url": "/admin/userauths/user/"},
+    ],
+
+    "order_with_respect_to": [
+        "core",
+        "core.post",
+        "core.friend",
+        "core.FriendRequest",
+        "userauths",
+        "addon",
+    ],
+    
+    "icons": {
+        "admin.LogEntry": "fas fa-file",
+
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+
+        "userauths.User": "fas fa-user",
+        "userauths.Profile":"fas fa-address-card",
+
+    },
+
+    "show_ui_builder" : True
+}
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,
     "footer_small_text": False,
