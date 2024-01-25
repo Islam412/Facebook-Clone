@@ -18,6 +18,7 @@ class User(AbstractUser):
     
     Confirm_Password = models.CharField(max_length=20, null=True, blank=True)
 
+    # Change defult django in adminbanal
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['username']
 
