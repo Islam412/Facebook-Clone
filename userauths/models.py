@@ -38,6 +38,11 @@ RELATIONSHIP = (
 )
 
 
+def user_directory_path(instance, filename):
+    # 200.jpg
+    ext = filename.split('.')[-1]    # split------> .jpg
+    filename = "%s.%s" % (instance.user.id, ext)
+    return 'user_{0}/{1}'.format(instance.user.id,  filename)
 
 
 
