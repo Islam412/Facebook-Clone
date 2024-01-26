@@ -38,6 +38,8 @@ RELATIONSHIP = (
 )
 
 
+# هذا الكود يُستخدم في إعداد مسار (path) لتخزين الملفات المرفوعة بواسطة مستخدمين. يستخدم هذا الكود في نظام إطار العمل (framework) Django لتحديد مكان تخزين الملفات.
+#change path save all file
 def user_directory_path(instance, filename):
     # 200.jpg
     ext = filename.split('.')[-1]    # split------> .jpg
@@ -50,3 +52,4 @@ class Profile(models.Model):
     pid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     cover_images = models.ImageField(upload_to='Images')
+    
