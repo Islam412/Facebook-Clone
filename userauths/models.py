@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
+from PIL import Image
+from shortuuid.django_fields import ShortUUIDField
+
 
 GENDER = (
     ("female", "Female"),
@@ -26,3 +29,19 @@ class User(AbstractUser):
         return str(self.username)
 
 
+
+
+RELATIONSHIP = (
+    ("single","Single"),
+    ("married","married"),
+    ("inlove","In Love"),
+)
+
+
+
+
+
+class Profile(models.Model):
+    pid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    cover_images = models.ImageField(upload_to='Images')
