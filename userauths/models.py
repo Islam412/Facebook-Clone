@@ -71,10 +71,10 @@ class Profile(models.Model):
     instgram = models.CharField(max_length=200 ,null=True ,blank=True)
     whatsapp = models.CharField(max_length=200 ,null=True ,blank=True)
     verified = models.BooleanField(default=False)
-    followers = models.ManyToManyField(User, related_name="Followers")
-    following = models.ManyToManyField(User, related_name="Following")
-    friends = models.ManyToManyField(User, related_name="Friends")
-    blocked = models.ManyToManyField(User, related_name="blocked")
+    followers = models.ManyToManyField(User, related_name="Followers",null=True ,blank=True)
+    following = models.ManyToManyField(User, related_name="Following",null=True ,blank=True)
+    friends = models.ManyToManyField(User, related_name="Friends",null=True ,blank=True)
+    blocked = models.ManyToManyField(User, related_name="blocked",null=True ,blank=True)
     date = models.DateTimeField(auto_now_add=True ,null=True ,blank=True)
 
     def __str__(self):
