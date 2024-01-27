@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'taggit',
     'import_export',
+    
 ]
 
 MIDDLEWARE = [
