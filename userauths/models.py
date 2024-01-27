@@ -81,7 +81,7 @@ class Profile(models.Model):
     friends = models.ManyToManyField(User, related_name="Friends",null=True ,blank=True)
     blocked = models.ManyToManyField(User, related_name="blocked",null=True ,blank=True)
     date = models.DateTimeField(auto_now_add=True ,null=True ,blank=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True ,null=True ,blank=True)
 
     def __str__(self):
         if self.full_name != "" or self.full_name != None:
@@ -92,6 +92,6 @@ class Profile(models.Model):
     def save(self, *args , **kwargs):
         if self.slug == "" or self.slug == None:
             uuid_key = Shortuuid.uuid()   # user_name-bbnmbvcfxgfhfjgtfrqwertyhbfdsdfgdfvgb
-            uniqueid = uuid_key[:4]    # user_qwer
+            uniqueid = uuid_key[:2]    # user_qw
             self.slug = slugify(self.full_name) + '-' + str(uniqueid.lower()) #islam-hamdy-qwer
         super(Profile, self).save(*args, **kwargs)
