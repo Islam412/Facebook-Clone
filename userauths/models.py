@@ -85,23 +85,25 @@ class Profile(models.Model):
     slug = models.SlugField(unique=True ,null=True ,blank=True)
 
     def __str__(self):
-        if self.full_name != "" or self.full_name != None:
-            return self.full_name
-        else:
-            return self.user.username
+        return self.user.username
 
     def save(self, *args , **kwargs):
         if self.slug == "" or self.slug == None:
-            uuid_key = Shortuuid.uuid()   # user_name-bbnmbvcfxgfhfjgtfrqwertyhbfdsdfgdfvgb
+            uuid_key = shortuuid.uuid()   # user_name-bbnmbvcfxgfhfjgtfrqwertyhbfdsdfgdfvgb
             uniqueid = uuid_key[:2]    # user_qw
             self.slug = slugify(self.full_name) + '-' + str(uniqueid.lower()) #islam-hamdy-qwer
         super(Profile, self).save(*args, **kwargs)
 
 
-
+# create user profile otomatic
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
         
 
 
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+post_save.connect(create_user_profile ,sender=User)
+post_save.connect(save_user_profile ,sender=User)
