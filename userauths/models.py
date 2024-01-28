@@ -96,3 +96,12 @@ class Profile(models.Model):
             uniqueid = uuid_key[:2]    # user_qw
             self.slug = slugify(self.full_name) + '-' + str(uniqueid.lower()) #islam-hamdy-qwer
         super(Profile, self).save(*args, **kwargs)
+
+
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+        
+
+
