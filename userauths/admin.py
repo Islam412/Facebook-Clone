@@ -7,6 +7,5 @@ class UserAdmin(admin.ModelAdmin):
 
 
 
-
-admin.site.register(User)
+admin.site.register(User,UserAdmin)
 admin.site.register(Profile)
