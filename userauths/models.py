@@ -95,7 +95,7 @@ class Profile(models.Model):
         super(Profile, self).save(*args, **kwargs)
 
 
-# create user profile otomatic
+# create user profile automatic
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
