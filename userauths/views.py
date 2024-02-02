@@ -2,14 +2,14 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
-from forms import UserCreationForm
+from userauths.forms import UserCreationForm
 from userauths.models import Profile
 
 
 class RegisterView(request):
     if request.user.is_authenticated:
         messages.warning(request, 'You are registered!')
-        return render('core:feed')
+        return render(request, 'core:home')
     
     form = UserCreationForm(request.POST or None)
     if form.is_valid():
@@ -29,7 +29,7 @@ class RegisterView(request):
         profile.save()
 
         messages.success(request,f'Hi {full_name}. Your account was created successfully.')
-        return render('core:feed')
+        return render(request, 'core:home')
     
     context = {
         'form':form
