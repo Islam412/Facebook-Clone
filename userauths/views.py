@@ -6,10 +6,10 @@ from userauths.forms import UserCreationForm
 from userauths.models import Profile
 
 
-class RegisterView(request):
+def RegisterView(request):
     if request.user.is_authenticated:
         messages.warning(request, 'You are registered!')
-        return render(request, 'core:home')
+        return render('core:index')
     
     form = UserCreationForm(request.POST or None)
     if form.is_valid():
@@ -29,7 +29,7 @@ class RegisterView(request):
         profile.save()
 
         messages.success(request,f'Hi {full_name}. Your account was created successfully.')
-        return render(request, 'core:home')
+        return render('core:home')
     
     context = {
         'form':form
