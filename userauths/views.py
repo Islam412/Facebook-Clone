@@ -9,7 +9,7 @@ from userauths.models import Profile
 def RegisterView(request):
     if request.user.is_authenticated:
         messages.warning(request, 'You are registered!')
-        return render('core:index')
+        return render('core:home')
     
     form = UserCreationForm(request.POST or None)
     if form.is_valid():
