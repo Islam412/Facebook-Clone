@@ -12,7 +12,6 @@ class UserRegisterForm(UserCreationForm):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'id': "", 'placeholder':'Confirm Password'}), required=True)
     gender = forms.CharField(widget=forms.TextInput(attrs={ 'class': 'with-border' , 'id': "", 'placeholder':'Enter Gender'}))
 
-
     class Meta:
         model = User
         fields = ['full_name', 'username', 'email', 'password1', 'password2', 'phone', 'gender']
@@ -22,3 +21,5 @@ class UserRegisterForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'with-border'
+
+

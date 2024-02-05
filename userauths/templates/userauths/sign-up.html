@@ -45,6 +45,31 @@
                 <p class="font-medium lg:mx-0 md:text-2xl mt-6 mx-auto sm:w-3/4 text-xl"> Connect with friends and the world around you on Socialite.</p>
             </div>
             <div class="lg:mt-0 lg:w-96 md:w-1/2 sm:w-2/3 mt-10 w-full">
+
+
+                <!-- Form Errors -->
+                {% if form.errors %}
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">{{form.errors}}</strong>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                      <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                    </span>
+                  </div> 
+                {% endif %}
+
+
+                {% if messages %}
+                    {% for message in messages %}
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">{{message}}</strong>
+                                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                                <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                                </span>
+                            </div> 
+                    {% endfor %}
+                {% endif %}
+
+
                 <form class="p-6 space-y-4 relative bg-white shadow-lg rounded-lg">
                     <input type="email" placeholder="Email or Phone Number" class="with-border">
                     <input type="password" placeholder="Password" class="with-border">
@@ -87,14 +112,14 @@
                 <div class="grid lg:grid-cols-2 gap-3">
                     <div>
                         <label class="mb-0"> Gender </label>
-                        <select class="selectpicker mt-2 with-border">
+                        <select placeholder="Gender" name="gender" class="selectpicker mt-2 with-border">
                             <option>Male</option>
                             <option>Female</option>
                         </select>
 
                     </div>
                     <div>
-                        <label class="mb-2"> Phone: optional  </label>
+                        <label class="mb-2"> Phone Number  </label>
                         <input type="text" placeholder="+543 5445 0543" name="phone" class="with-border">
                     </div>
                 </div>
@@ -104,7 +129,7 @@
                     <a href="#">Cookies Policy</a>. You may receive SMS Notifications from us and can opt out any time.
                 </p>
                 <div class="flex">
-                    <button type="button" class="bg-blue-600 font-semibold mx-auto px-10 py-3 rounded-md text-center text-white">
+                    <button type="submit" class="bg-blue-600 font-semibold mx-auto px-10 py-3 rounded-md text-center text-white">
                         Get Started
                     </button>
                 </div>
