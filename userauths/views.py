@@ -35,3 +35,5 @@ def RegisterView(request):
         'form':form
     }
     return render(request, 'userauths/sign-up.html',context)
+
+
