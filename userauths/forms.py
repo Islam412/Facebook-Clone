@@ -10,11 +10,11 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': '' , 'id': "", 'placeholder':'Email Address'}), required=True)
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'id': "", 'placeholder':'Password'}), required=True)
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'id': "", 'placeholder':'Confirm Password'}), required=True)
-    gender = forms.CharField(widget=forms.TextInput(attrs={ 'class': 'with-border' , 'id': "", 'placeholder':'Enter Gender'}))
+    # gender = forms.CharField(widget=forms.TextInput(attrs={ 'class': 'with-border' , 'id': "", 'placeholder':'Enter Gender'}))
 
     class Meta:
         model = User
-        fields = ['full_name', 'username', 'email', 'password1', 'password2', 'phone', 'gender']
+        fields = ['full_name', 'username', 'email', 'password1', 'password2', 'phone']
 
 
     def __init__(self, *args, **kwargs):
