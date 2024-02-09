@@ -1,10 +1,9 @@
-from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+
 
 from userauths.models import User, Profile
 from userauths.forms import UserRegisterForm
@@ -39,8 +38,8 @@ def RegisterView(request, *args, **kwargs):
     return render(request, 'userauths/sign-up.html', context)
 
 def LoginView(request):
-    if request.user.is_authenticated:
-        return redirect('core:home')
+    # if request.user.is_authenticated:
+    #     return redirect('core:home')
     
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -61,7 +60,8 @@ def LoginView(request):
         except:
             messages.error(request, 'User does not exist')
 
-    return HttpResponseRedirect("/")
+    return redirect("userauths:sign-in")
+
 
 def LogoutView(request):
     logout(request)
