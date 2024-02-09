@@ -1,63 +1,69 @@
+from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
-
+from userauths.models import User, Profile
 from userauths.forms import UserRegisterForm
-from userauths.models import Profile
 
 
-def RegisterView(request):
+def RegisterView(request, *args, **kwargs):
     if request.user.is_authenticated:
-        messages.warning(request, 'You are registered!')
-        return redirect('core:home')
-    
+        messages.warning(request, f"Hey {request.user.username}, you are already logged in")
+        return redirect('core:home')   
+
     form = UserRegisterForm(request.POST or None)
     if form.is_valid():
-        user = form.save(commit=False)
-        user.save()
-        
+        form.save()
         full_name = form.cleaned_data.get('full_name')
         phone = form.cleaned_data.get('phone')
         email = form.cleaned_data.get('email')
-        password = form.cleaned_data.get('password')
+        password = form.cleaned_data.get('password1')
 
         user = authenticate(email=email, password=password)
         login(request, user)
 
-        profile = Profile.objects.create(user=user, full_name=full_name, phone=phone)
-        
-        messages.success(request, f'Hi {full_name}. Your account was created successfully.')
+        messages.success(request, f"Hi {request.user.username}, your account have been created successfully.")
+
+        profile = Profile.objects.get(user=request.user)
+        profile.full_name = full_name
+        profile.phone = phone
+        profile.save()
+
         return redirect('core:home')
     
-    context = {
-        'form': form
-    }
+    context = {'form':form}
     return render(request, 'userauths/sign-up.html', context)
-
-
 
 def LoginView(request):
     if request.user.is_authenticated:
-        messages.warning(request, 'You are login!')
         return redirect('core:home')
     
-    if request.method=='POST':
-        email = request.POST.get("email")
-        password = request.POST.get("password")
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
 
         try:
             user = User.objects.get(email=email)
+
             user = authenticate(request, email=email, password=password)
+
             if user is not None:
                 login(request, user)
-                messages.warning(request, 'You are logged in')
-                return redirect("core:home")
+                messages.success(request, "You are Logged In")
+                return redirect('core:home')
             else:
-                messages.error(request, "Username or password dosen't match")
-                return redirect("userauths:sign-in")
+                messages.error(request, 'Username or password does not exit.')
+        
         except:
-            messages.error(request, "User doesn't exists")
-    return HttpResponseRedirect('/')
+            messages.error(request, 'User does not exist')
+
+    return HttpResponseRedirect("/")
+
+def LogoutView(request):
+    logout(request)
+    messages.success(request, 'You have been logged out')
+    return redirect("userauths:sign-up")

@@ -19,7 +19,7 @@ class UserRegisterForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'with-border'
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'with-border'
 
 

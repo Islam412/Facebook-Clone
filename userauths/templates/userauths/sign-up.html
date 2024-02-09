@@ -70,7 +70,7 @@
                 {% endif %}
 
 
-                <form class="p-6 space-y-4 relative bg-white shadow-lg rounded-lg" method="POST" action="{% url 'userauths:sign-in' %}">
+                <form class="p-6 space-y-4 relative bg-white shadow-lg rounded-lg" method="POST">
                     {% csrf_token %}
                     <input type="email" name="email" placeholder="Email or Phone Number" class="with-border">
                     <input type="password" name="password" placeholder="Password" class="with-border">
