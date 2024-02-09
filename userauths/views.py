@@ -38,8 +38,8 @@ def RegisterView(request, *args, **kwargs):
     return render(request, 'userauths/sign-up.html', context)
 
 def LoginView(request):
-    # if request.user.is_authenticated:
-    #     return redirect('core:home')
+    if request.user.is_authenticated:
+        return redirect('core:home')
     
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -53,14 +53,14 @@ def LoginView(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, "You are Logged In")
-                return redirect('core:home')
+                return render(request, 'userauths/sign-up.html')
             else:
                 messages.error(request, 'Username or password does not exit.')
         
         except:
             messages.error(request, 'User does not exist')
 
-    return redirect("userauths:sign-in")
+    return HttpResponseRedirect("/")
 
 
 def LogoutView(request):
