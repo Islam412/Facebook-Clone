@@ -70,10 +70,11 @@
                 {% endif %}
 
 
-                <form class="p-6 space-y-4 relative bg-white shadow-lg rounded-lg">
-                    <input type="email" placeholder="Email or Phone Number" class="with-border">
-                    <input type="password" placeholder="Password" class="with-border">
-                    <button type="button" class="bg-blue-600 font-semibold p-3 rounded-md text-center text-white w-full">
+                <form class="p-6 space-y-4 relative bg-white shadow-lg rounded-lg" method="POST" action="{% url 'userauths:sign-in' %}">
+                    {% csrf_token %}
+                    <input type="email" name="email" placeholder="Email or Phone Number" class="with-border">
+                    <input type="password" name="password" placeholder="Password" class="with-border">
+                    <button type="submit" class="bg-blue-600 font-semibold p-3 rounded-md text-center text-white w-full">
                         Log In
                     </button>
                     <a href="#" class="text-blue-500 text-center block"> Forgot Password? </a>
