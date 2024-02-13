@@ -70,7 +70,7 @@
                 {% endif %}
 
 
-                <form class="p-6 space-y-4 relative bg-white shadow-lg rounded-lg" method="POST" action="">
+                <form class="p-6 space-y-4 relative bg-white shadow-lg rounded-lg" method="POST" action="{% url 'userauths:sign-in' %}">
                     {% csrf_token %}
                     <input type="email" name="email" placeholder="Email or Phone Number" class="with-border">
                     <input type="password" name="password" placeholder="Password" class="with-border">
@@ -85,6 +85,7 @@
                         </a>
                     </div>
                 </form>
+                
 
                 <div class="mt-8 text-center text-sm"> <a href="#" class="font-semibold hover:underline"> Create a Page </a> for a celebrity, band or business </div>
             </div>

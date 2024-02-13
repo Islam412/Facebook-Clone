@@ -37,6 +37,7 @@ def RegisterView(request, *args, **kwargs):
     context = {'form':form}
     return render(request, 'userauths/sign-up.html', context)
 
+# @login_required
 def LoginView(request):
     if request.user.is_authenticated:
         return redirect('core:home')
@@ -53,7 +54,7 @@ def LoginView(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, "You are Logged In")
-                return render(request, 'userauths/sign-up.html')
+                return redirect('core:home')
             else:
                 messages.error(request, 'Username or password does not exit.')
         
