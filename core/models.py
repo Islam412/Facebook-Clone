@@ -84,4 +84,14 @@ class FriendRequest(models.Model):
         verbose_name_plural = 'FriendRequest'
 
 
+class Friend(models.Model):
+    fid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
+    friend = models.ForeignKey(User, on_delete=models.CASCADE, related_name="friend")
+    date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return str(self.post)
+    
+    class Meta:
+        verbose_name_plural = 'Friend'
