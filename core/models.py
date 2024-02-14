@@ -126,3 +126,30 @@ class ReplyComment(models.Model):
     
     class Meta:
         verbose_name_plural = 'Reply Comment'
+
+
+NOTIFICATION_TYPE = (
+    ("Friend Request", "Friend Request"),
+    ("Friend Request Accepted", "Friend Request Accepted"),
+    ("New Follower", "New Follower"),
+    ("New Like", "New Like"),
+    ("New Comment", "New Comment"),
+    ("Comment Liked", "Comment Liked"),
+    ("Comment Replied", "Comment Replied"),
+)
+
+class Notification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='noti_user')
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='noti_sender')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    notification_type = models.CharField(max_length=500, choices=NOTIFICATION_TYPE)
+    is_read = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)
+    nid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
+
+    def __str__(self):
+        return str(self.user)
+    
+    class Meta:
+        verbose_name_plural = 'Notification'
