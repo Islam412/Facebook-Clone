@@ -111,3 +111,17 @@ class Comment(models.Model):
     
     class Meta:
         verbose_name_plural = 'Comment'
+
+
+class ReplyComment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reply_user')
+    reply = models.CharField(max_length=1000)
+    active = models.BooleanField(default=True)
+    date = models.DateTimeField(auto_now_add=True)
+    rid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
+
+    def __str__(self):
+        return str(self.reply)
+    
+    class Meta:
+        verbose_name_plural = 'ReplyComment'
