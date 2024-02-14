@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Post, Gallery, FriendRequest, Friend, Comment, ReplyComment
+from core.models import Post, Gallery, FriendRequest, Friend, Comment, ReplyComment, Notification
 
 
 # add many images in the post
@@ -22,6 +22,9 @@ class CommentTabAdmin(admin.TabularInline):
 class ReplyCommentTabAdmin(admin.TabularInline):
     model = ReplyComment
 
+
+class NotificationAamin(admin.ModelAdmin):
+    list_display = ['user', 'sender', 'post', 'comment', 'notification_type', 'is_read']
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -53,3 +56,4 @@ admin.site.register(Comment, CommentAdmin)
 admin.site.register(ReplyComment, ReplyAdmin)
 admin.site.register(Friend, FriendAdmin)
 admin.site.register(FriendRequest, FriendRequestAdmin)
+admin.site.register(Notification, NotificationAamin)
