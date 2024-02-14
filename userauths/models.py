@@ -88,6 +88,7 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+    # import shortuuid
     def save(self, *args , **kwargs):
         if self.slug == "" or self.slug == None:
             uuid_key = shortuuid.uuid()   # user_name-bbnmbvcfxgfhfjgtfrqwertyhbfdsdfgdfvgb
