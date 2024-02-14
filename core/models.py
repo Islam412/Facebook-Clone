@@ -81,4 +81,7 @@ class FriendRequest(models.Model):
         return str(self.post)
     
     class Meta:
-        verbose_name_plural = 'Gallery'
+        verbose_name_plural = 'FriendRequest'
+
+
+
