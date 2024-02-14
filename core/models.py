@@ -40,4 +40,23 @@ class Post(models.Model):
             self.slug = slugify(self.title) + '-' + uniqueid
 
         super(Post, self).save(*args, **kwargs)
+    
+    def thumbnail(self):
+        return mark_safe('<img src="/media/%s" width="50" height="50" object-fit:"cover" style="border-radius: 5px;" />' % (self.image))
+
+
+class Gallery(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='gallery', blank=True, null=True)
+    active = models.BooleanField(default=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.post)
+    
+    class Meta:
+        verbose_name_plural = ['Gallery']
+
+    def thumbnail(self):
+        return mark_safe('<img src="/media/%s" width="50" height="50" object-fit:"cover" style="border-radius: 5px;" />' % (self.image))
 
