@@ -81,7 +81,7 @@ class FriendRequest(models.Model):
         return str(self.sender)
     
     class Meta:
-        verbose_name_plural = 'FriendRequest'
+        verbose_name_plural = 'Friend Request'
 
 
 class Friend(models.Model):
@@ -115,6 +115,7 @@ class Comment(models.Model):
 
 class ReplyComment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reply_user')
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
     reply = models.CharField(max_length=1000)
     active = models.BooleanField(default=True)
     date = models.DateTimeField(auto_now_add=True)
@@ -124,4 +125,4 @@ class ReplyComment(models.Model):
         return str(self.reply)
     
     class Meta:
-        verbose_name_plural = 'ReplyComment'
+        verbose_name_plural = 'Reply Comment'
