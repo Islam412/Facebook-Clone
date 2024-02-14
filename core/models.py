@@ -62,3 +62,23 @@ class Gallery(models.Model):
     def thumbnail(self):
         return mark_safe('<img src="/media/%s" width="50" height="50" object-fit:"cover" style="border-radius: 5px;" />' % (self.image))
 
+
+
+FRIEND_REQUEST = (
+    ("Pending","Pending"),
+    ("Accept","Accept"),
+    ("Reject","Reject"),
+)
+
+class FriendRequest(models.Model):
+    fid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender")
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="receiver")
+    status = models.CharField(max_length=100, default="Pending", choices=FRIEND_REQUEST)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.post)
+    
+    class Meta:
+        verbose_name_plural = 'Gallery'
