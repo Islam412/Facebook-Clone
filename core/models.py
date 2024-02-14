@@ -78,7 +78,7 @@ class FriendRequest(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.post)
+        return str(self.sender)
     
     class Meta:
         verbose_name_plural = 'FriendRequest'
@@ -91,7 +91,23 @@ class Friend(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.post)
+        return str(self.friend)
     
     class Meta:
         verbose_name_plural = 'Friend'
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    cid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=1000)
+    active = models.BooleanField(default=True)
+    date = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(User, blank=True, related_name="likes")
+
+    def __str__(self):
+        return str(self.comment)
+    
+    class Meta:
+        verbose_name_plural = 'Comment'
