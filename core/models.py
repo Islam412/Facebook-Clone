@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
+from django.utils.safestring import mark_safe
+
 
 from shortuuid.django_fields import ShortUUIDField
 import shortuuid
@@ -46,7 +48,7 @@ class Post(models.Model):
 
 
 class Gallery(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='gellery')
     image = models.ImageField(upload_to='gallery', blank=True, null=True)
     active = models.BooleanField(default=True)
     date = models.DateTimeField(auto_now_add=True)
@@ -55,7 +57,7 @@ class Gallery(models.Model):
         return str(self.post)
     
     class Meta:
-        verbose_name_plural = ['Gallery']
+        verbose_name_plural = 'Gallery'
 
     def thumbnail(self):
         return mark_safe('<img src="/media/%s" width="50" height="50" object-fit:"cover" style="border-radius: 5px;" />' % (self.image))
