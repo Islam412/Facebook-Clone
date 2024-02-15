@@ -157,7 +157,7 @@ class Notification(models.Model):
 
 class Group(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='group_user')
-    memebers = models.ManyToManyField(User, on_delete=models.CASCADE, related_name='group_memebers')
+    memebers = models.ManyToManyField(User, related_name='group_memebers')
 
     image = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
     name = models.CharField(max_length=500, blank=True, null=True)
@@ -186,3 +186,6 @@ class Group(models.Model):
     
     def thumbnail(self):
         return mark_safe('<img src="/media/%s" width="50" height="50" object-fit:"cover" style="border-radius: 5px;" />' % (self.image))
+    
+
+
