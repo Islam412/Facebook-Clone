@@ -219,3 +219,37 @@ class GroupPost(models.Model):
     
     def thumbnail(self):
         return mark_safe('<img src="/media/%s" width="50" height="50" object-fit:"cover" style="border-radius: 5px;" />' % (self.image))
+    
+
+
+class Page(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='page_user')
+    followers = models.ManyToManyField(User, related_name='page_memebers')
+
+    image = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
+    name = models.CharField(max_length=500, blank=True, null=True)
+    description = models.TextField(max_length=500, blank=True, null=True)
+    video = models.FileField(upload_to=user_directory_path, blank=True, null=True)
+    visibility = models.CharField(max_length=100, choices=VISIBILITY, default='Everyone')
+    pid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
+    active = models.BooleanField(default=True)
+    slug = models.SlugField(unique=True)
+    views = models.PositiveIntegerField(default=0)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return self.user.username
+        
+    def save(self, *args, **kwargs):
+        uuid_key = shortuuid.uuid()
+        uniqueid = uuid_key[:2]
+        if self.slug == "" or self.slug == None:
+            self.slug = slugify(self.title) + '-' + uniqueid
+
+        super(Page, self).save(*args, **kwargs)
+    
+    def thumbnail(self):
+        return mark_safe('<img src="/media/%s" width="50" height="50" object-fit:"cover" style="border-radius: 5px;" />' % (self.image))
