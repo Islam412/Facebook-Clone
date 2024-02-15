@@ -141,8 +141,8 @@ NOTIFICATION_TYPE = (
 class Notification(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='noti_user')
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='noti_sender')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.SET_NULL, blank=True, null=True)
+    comment = models.ForeignKey(Comment, on_delete=models.SET_NULL, blank=True, null=True)
     notification_type = models.CharField(max_length=500, choices=NOTIFICATION_TYPE)
     is_read = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
