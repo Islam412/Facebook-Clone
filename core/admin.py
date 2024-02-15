@@ -26,7 +26,8 @@ class ReplyCommentTabAdmin(admin.TabularInline):
 class GroupPostTabAdmin(admin.TabularInline):
     model = GroupPost
 
-
+class PagePostTabAdmin(admin.TabularInline):
+    model = PagePost
 
 
 
@@ -64,7 +65,7 @@ class GroupAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name", )}
 
 class PageAdmin(admin.ModelAdmin):
-    # inlines = [GroupPostTabAdmin]
+    # inlines = [PagePostTabAdmin]
     list_editable = ['user', 'name', 'visibility']
     list_display = ['thumbnail', 'user', 'name', 'visibility']
     prepopulated_fields = {"slug": ("name", )}
