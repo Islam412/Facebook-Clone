@@ -491,17 +491,17 @@
 
 
                             <a href="#">
-                                <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" class="is_avatar" alt="">
+                                <img src="{{request.user.profile.image.url}}" class="is_avatar" alt="">
                             </a>
                             <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown">
 
                                 <a href="timeline.html" class="user">
                                     <div class="user_avatar">
-                                        <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" alt="">
+                                        <img src="{{request.user.profile.image.url}}" style="width:45px ; height:45px" alt="">
                                     </div>
                                     <div class="user_name">
-                                        <div> Stella Johnson </div>
-                                        <span> @johnson</span>
+                                        <div> {{request.user.full_name}} </div>
+                                        <span> @{{request.user.username}}</span>
                                     </div>
                                 </a>
                                 <hr>
