@@ -886,7 +886,7 @@
                         <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
                     </div>
                     <div class="flex flex-1 items-start space-x-4 p-5">
-                        <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" class="bg-gray-200 border border-white rounded-full w-11 h-11">
+                        <img src="{{request.user.profile.image.url}}" class="bg-gray-200 border border-white rounded-full w-11 h-11">
                         <div class="flex-1 pt-2">
                             <textarea class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5" placeholder="What's on Your Mind ? {{request.user|title}}!"></textarea>
                         </div>
