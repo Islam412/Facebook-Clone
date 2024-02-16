@@ -62,7 +62,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # cover_images = models.ImageField(upload_to='Images')     change path
     cover_image = models.ImageField(upload_to=user_directory_path, default="cover.jpg", blank=True, null=True)
-    image = models.ImageField(upload_to=user_directory_path, default="default.jpg", blank=True, null=True)
+    image = models.ImageField(upload_to=user_directory_path, default="default.png", blank=True, null=True)
     full_name = models.CharField(max_length=200, null=True ,blank=True)
     phone = models.CharField(max_length=200, null=True ,blank=True)
     # about_me = models.CharField(max_length=1000, null=True, blank=True)
