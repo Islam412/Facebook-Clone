@@ -25,7 +25,7 @@ class Post(models.Model):
     pid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
     likes = models.ManyToManyField(User, blank=True, related_name="likes")
     active = models.BooleanField(default=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
     views = models.PositiveIntegerField(default=0)
     date = models.DateTimeField(auto_now_add=True)
 
@@ -40,6 +40,8 @@ class Post(models.Model):
         uniqueid = uuid_key[:2]
         if self.slug == "" or self.slug == None:
             self.slug = slugify(self.title) + '-' + uniqueid
+        else:
+            self.slug = slugify(self.image.name) + '-' + uniqueid
 
         super(Post, self).save(*args, **kwargs)
     
