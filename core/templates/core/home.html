@@ -892,7 +892,7 @@
                         <div class="flex flex-1 items-start space-x-4 p-5">
                             <img src="{{request.user.profile.image.url}}" class="bg-gray-200 border border-white rounded-full w-11 h-11">
                             <div class="flex-1 pt-2">
-                                <textarea class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5" placeholder="What's on Your Mind ? {{request.user|title}}!"></textarea>
+                                <textarea id="post-caption" class="uk-textare text-black shadow-none focus:shadow-none text-xl font-medium resize-none" rows="5" placeholder="What's on Your Mind ? {{request.user|title}}!"></textarea>
                             </div>
     
                         </div>
@@ -905,6 +905,18 @@
                         </div>
 
 
+                        
+                        <script>
+                            var loadfile = function(event){
+                                var output2 = document.getElementById("preview_post_thumbnail")
+                                output2.src = URL.createObjectURL(event.target.files[0])
+                                output2.onload = function(){
+                                    URL.createObjectURL(output2.src)
+                                }
+                            }
+                        </script>
+
+
 
                         <div class="bsolute bottom-0 p-4 space-x-4 w-full">
                             <div class="flex bg-gray-50 border border-purple-100 rounded-2xl p-2 shadow-sm items-center">
@@ -914,7 +926,7 @@
                                     <label for="post-thumbnail">
                                         <svg class="bg-blue-100 h-9 p-1.5 rounded-full text-blue-600 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                     </label>
-                                    <input type="file" class="d-none" name="post-thumbnail" id="post-thumbnail">
+                                    <input onchange="loadfile(event)" type="file" class="d-none" name="post-thumbnail" id="post-thumbnail">
                                     <svg class="text-red-600 h-9 p-1.5 rounded-full bg-red-100 w-9 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"> </path></svg>
                                     <svg class="text-purple-600 h-9 p-1.5 rounded-full bg-purple-100 w-9 cursor-pointer" id="veiw-more" hidden fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path> </svg>
     
@@ -926,11 +938,9 @@
                         </div>
                         <div class="flex items-center w-full justify-between border-t p-3">
     
-                            <select class="selectpicker mt-2 story">
-                                <option>Only me</option>
-                                <option>Every one</option>
-                                <option>People I Follow </option>
-                                <optionion>People Follow Me</optionion>
+                            <select class="selectpicker mt-2 story" id="visibility">
+                                <option value="Only me">Only me</option>
+                                <option value="Every one">Every one</option>
                             </select>
     
                             <div class="flex space-x-2">
