@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.utils.text import slugify
 from django.http import JsonResponse
 from django.utils.timesince import timesince
+from django.views.decorators.csrf import csrf_exempt
 
 
 import shortuuid
@@ -17,11 +18,13 @@ def home(request):
     return render(request,'core/home.html', context)
 
 
+@csrf_exempt
 def create_post(request):
     if request.method == "POST":
         title = request.POST.get('post-caption')
         visibility = request.POST.get('visibility')
-        image = request.POST.get('post-thumbnail')
+        # image = request.POST.get('post-thumbnail')
+        image = request.FILES.get('post-thumbnail')
 
         print("Title ============", title)
         print("thumbnail ============", image)
@@ -31,7 +34,7 @@ def create_post(request):
         uniqueid = uuid_key[:4]
 
 
-        if title and images:
+        if title and image:
             post = Post(
                 title=title,
                 image=image,
@@ -45,7 +48,7 @@ def create_post(request):
                 'title':post.title,
                 "image":post.image.url,
                 "full_name":post.user.profile.image.url,
-                'data':timesince(post.data),
+                'date':timesince(post.date),
                 'id':post.id,
             }})
         else:
