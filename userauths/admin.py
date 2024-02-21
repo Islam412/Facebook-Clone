@@ -3,7 +3,7 @@ from userauths.models import User , Profile
 
 
 class UserCustomAdmin(admin.ModelAdmin):
-    list_display = ['username', 'full_name', 'username', 'email']
+    list_display = ['username', 'full_name', 'gender', 'email']
 
 
 class ProfileAdmin(admin.ModelAdmin):
