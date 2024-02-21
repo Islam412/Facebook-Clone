@@ -23,7 +23,6 @@ def create_post(request):
     if request.method == "POST":
         title = request.POST.get('post-caption')
         visibility = request.POST.get('visibility')
-        # image = request.POST.get('post-thumbnail')
         image = request.FILES.get('post-thumbnail')
 
         print("Title ============", title)

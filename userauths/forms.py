@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from userauths.models import User
+from userauths.models import User, GENDER
 
 
 class UserRegisterForm(UserCreationForm):
@@ -10,11 +10,11 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': '' , 'id': "", 'placeholder':'Email Address'}), required=True)
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'id': "", 'placeholder':'Password'}), required=True)
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'id': "", 'placeholder':'Confirm Password'}), required=True)
-    # gender = forms.CharField(widget=forms.TextInput(attrs={ 'class': 'with-border' , 'id': "", 'placeholder':'Enter Gender'}))
+    gender = forms.ChoiceField(choices=GENDER, widget=forms.Select(attrs={'class': 'selectpicker mt-2 with-border', 'placeholder': 'Gender'}))
 
     class Meta:
         model = User
-        fields = ['full_name', 'username', 'email', 'password1', 'password2', 'phone']
+        fields = ['full_name', 'username', 'email', 'password1', 'password2', 'phone', 'gender']
 
 
     def __init__(self, *args, **kwargs):

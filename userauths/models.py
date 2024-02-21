@@ -25,7 +25,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=100, null=True ,blank=True)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=100, null=True, blank=True)
-    # gender = models.CharField(max_length=100, choices=GENDER, null=True, blank=True, default='male')    
+    gender = models.CharField(max_length=100, choices=GENDER, null=True, blank=True, default='male')    
     Confirm_Password = models.CharField(max_length=20, null=True, blank=True)
 
     # Change defult django in adminbanal

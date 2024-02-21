@@ -34,6 +34,11 @@ $(document).ready(function(){
             data: formData,
             processData: false,
             contentType: false,
+
+            success: function(res){
+                console.log("Post Created Successfully.");
+                $("#create-post-modal").removeClass("uk-flex uk-open");
+            }
         });
     });
 });
