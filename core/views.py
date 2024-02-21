@@ -11,7 +11,7 @@ from .models import Post
 
 
 def home(request):
-    posts = Post.objects.filter(active=True, visibility='Everyone')
+    posts = Post.objects.filter(active=True, visibility='Everyone').order_by("-id")   # .order_by("-id") ----->>show modern post
     context = {
         "posts":posts
     }

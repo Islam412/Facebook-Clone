@@ -40,8 +40,8 @@ class Post(models.Model):
         uniqueid = uuid_key[:2]
         if self.slug == "" or self.slug == None:
             self.slug = slugify(self.title) + '-' + uniqueid
-        else:
-            self.slug = slugify(self.image.name) + '-' + uniqueid
+        # else:
+        #     self.slug = slugify(self.image.name) + '-' + uniqueid
 
         super(Post, self).save(*args, **kwargs)
     
