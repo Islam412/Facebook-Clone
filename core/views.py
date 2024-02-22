@@ -24,10 +24,7 @@ def create_post(request):
         title = request.POST.get('post-caption')
         visibility = request.POST.get('visibility')
         image = request.FILES.get('post-thumbnail')
-
-        print("Title ============", title)
-        print("thumbnail ============", image)
-        print("visibility ============", visibility)
+        
 
         uuid_key = shortuuid.uuid()
         uniqueid = uuid_key[:4]
