@@ -911,9 +911,7 @@
                             var loadfile = function(event){
                                 var output2 = document.getElementById("preview_post_thumbnail");
                                 output2.src = URL.createObjectURL(event.target.files[0]);
-                                output2.onload = function(){
-                                    URL.createObjectURL(output2.src);
-                                };
+                                output2.onload = function(){};
                             };
                         </script>
 
