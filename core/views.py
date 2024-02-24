@@ -51,3 +51,46 @@ def create_post(request):
             return JsonResponse({'error': 'Image or titile dose not exists'})
         
     return JsonResponse({'data':'sent'})
+
+
+
+def like_bost(request):
+    id = request.GET.get.['id']
+    post = Post.objects.get(id=id)
+    user = request.user
+    bool = False
+
+    if user in post.likes.all():
+        post.likes.remove(user)
+        bool = False
+
+    else:
+        post.likes.add(user)
+        bool = True
+
+    data = {
+        'bool':bool,
+        'likes':post.likes.all().count(),
+    }
+
+
+
+
+
+
+
+    return JsonResponse({'data':data})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
