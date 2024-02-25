@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils.text import slugify
 from django.http import JsonResponse
 from django.utils.timesince import timesince
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+
 
 
 import shortuuid
@@ -10,6 +12,7 @@ from .models import Post
 
 
 
+@login_required
 def home(request):
     posts = Post.objects.filter(active=True, visibility='Everyone').order_by("-id")   # .order_by("-id") ----->>show modern post
     context = {
@@ -55,6 +58,8 @@ def create_post(request):
 
 
 def like_bost(request):
+    if not request.user.is_authenticated:
+        return redirect('userauths:sign-in')
     id = request.GET['id']
     post = Post.objects.get(id=id)
     user = request.user

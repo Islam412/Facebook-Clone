@@ -149,6 +149,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Other Configs
 AUTH_USER_MODEL = 'userauths.User'
 
+LOGIN_REDIRECT_URL = ''
+LOGIN_URL = 'userauths:sign-up'
+LOGOUT_REDIRECT_URL = "userauths:sign-up"
+
 
 
 JAZZMIN_SETTINGS = {
