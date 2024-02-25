@@ -55,7 +55,7 @@ def create_post(request):
 
 
 def like_bost(request):
-    id = request.GET.get.['id']
+    id = request.GET['id']
     post = Post.objects.get(id=id)
     user = request.user
     bool = False
@@ -72,12 +72,6 @@ def like_bost(request):
         'bool':bool,
         'likes':post.likes.all().count(),
     }
-
-
-
-
-
-
 
     return JsonResponse({'data':data})
 
