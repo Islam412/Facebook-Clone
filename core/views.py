@@ -82,14 +82,3 @@ def like_bost(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
