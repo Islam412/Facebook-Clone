@@ -158,7 +158,7 @@ $(document).ready(function(){
         // console.log(btn_val);
         
         $.ajax({
-            url: "/like_bost/",
+            url: "/like_post/",
             dataType: "json",
             data: {
                 "id": btn_val,
