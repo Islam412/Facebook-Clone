@@ -58,8 +58,6 @@ def create_post(request):
 
 
 def like_bost(request):
-    if not request.user.is_authenticated:
-        return redirect('userauths:sign-in')
     id = request.GET['id']
     post = Post.objects.get(id=id)
     user = request.user
@@ -68,7 +66,6 @@ def like_bost(request):
     if user in post.likes.all():
         post.likes.remove(user)
         bool = False
-
     else:
         post.likes.add(user)
         bool = True

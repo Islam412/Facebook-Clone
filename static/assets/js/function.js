@@ -149,3 +149,23 @@ $(document).ready(function(){
         });
     });
 });
+
+
+//   LIke Post
+$(document).ready(function(){
+    $(document).on("click", "#like-btn", function(){
+        let btn_val = $(this).attr("data-like-btn")
+        // console.log(btn_val);
+        
+        $.ajax({
+            url: "/like_bost/",
+            dataType: "json",
+            data: {
+                "id": btn_val,
+            },
+            success: function(response){
+                console.log("likes:", response.data.likes);
+            }
+        })
+    })
+})
