@@ -188,9 +188,9 @@
                                                 <div class="flex items-center">
                                                     {% for photo in post.likes.all|slice:"3" %}
                                                         {% if forloop.first %}
-                                                            <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900">
+                                                            <img src="{{photo.profile.image.url}}" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900">
                                                         {% else %}
-                                                            <img src="{% static 'assets/images/avatars/avatar-4.jpg' %}" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2">
+                                                            <img src="{{photo.profile.image.url}}" alt="" class="w-6 h-6 rounded-full border-2 border-white dark:border-gray-900 -ml-2">
                                                         {% endif %}
                                                     {% endfor %}
                                                 </div>
