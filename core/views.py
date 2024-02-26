@@ -57,7 +57,7 @@ def create_post(request):
 
 
 
-def like_bost(request):
+def like_post(request):
     id = request.GET['id']
     post = Post.objects.get(id=id)
     user = request.user
