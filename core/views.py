@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 
 import shortuuid
-from .models import Post
+from .models import Post, Comment
 
 
 
@@ -79,3 +79,27 @@ def like_post(request):
 
 
 
+def Comment_on_post(request):
+    id = request.GET['id']
+    Comment = request.GET['Comment']
+    post = Post.objects.get(id=id)
+    Comment_count = Comment.objects.filter(post=post).count()
+    user = request.user
+
+    new_comment = Comment.objects.create(
+        post=post,
+        comment=comment,
+        user=user,
+    )
+
+    data = {
+        'bool' : True,
+        'comment' : new_comment.comment,
+        'profile_imaage' : new_comment.profile.image.url,
+        'date' : timesince(new_comment.date),
+        'comment_id' : new_comment.id,
+        'post_id' : new_comment.post.id,
+        'Comment_count' : Comment_count + int(1),
+    }
+
+    return JsonResponse({'data':data})
