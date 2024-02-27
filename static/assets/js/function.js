@@ -182,7 +182,13 @@ $(document).ready(function(){
 
 
 
-    
+    // comment on post
+    $(document).on("click", "#comment-btn", function(){
+        let id = $(this).attr("data-comment-btn")
+        let comment = $("#comment-input"+id).val()
+        console.log(id);
+        console.log(comment);
+    })
 });
 
 
