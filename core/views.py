@@ -79,7 +79,7 @@ def like_post(request):
 
 
 
-def Comment_on_post(request):
+def comment_on_post(request):
     id = request.GET['id']
     Comment = request.GET['Comment']
     post = Post.objects.get(id=id)
