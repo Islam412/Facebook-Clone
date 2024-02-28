@@ -207,7 +207,7 @@
 
 
                                             <div class="border-t py-4 space-y-4 dark:border-gray-600" id="comment-div{{post.id}}">
-                                                {% for posts_comments in post.post_comments %}
+                                                {% for posts_comments in post.post_comments|slice:":2" %}
                                                     <div class="flex card shadow p-2">
                                                         <div class="w-10 h-10 rounded-full relative flex-shrink-0">
                                                             <img src="{{posts_comments.user.profile.image.url}}" alt="" class="absolute h-full rounded-full w-full">
