@@ -47,7 +47,7 @@ class Post(models.Model):
         return mark_safe('<img src="/media/%s" width="50" height="50" object-fit:"cover" style="border-radius: 5px;" />' % (self.image))
 
     def post_comments(self):
-        comments = Comment.objects.filter(post=self, active=True)
+        comments = Comment.objects.filter(post=self, active=True).order_by("-id")
         return comments
 
 class Gallery(models.Model):
