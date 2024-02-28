@@ -220,6 +220,7 @@ $(document).ready(function(){
                 `;
                 $("#comment-div" + id).prepend(newComment);
                 $("#comment-input" + id).val("");
+                $("#comment-count" + id).text(response.data.Comment_count);
             },
         });
     });
