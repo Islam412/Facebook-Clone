@@ -154,31 +154,29 @@ $(document).ready(function(){
     //   LIke Post
     $(document).ready(function(){
         $(document).on("click", "#like-btn", function(){
-            let btn_val = $(this).attr("data-like-btn")
+            let btn_val = $(this).attr("data-like-btn");
             // console.log(btn_val);
             
             $.ajax({
                 url: "/like_post/",
                 dataType: "json",
                 data: {
-                    "id": btn_val,
+                    "id": btn_val
                 },
                 success: function(response){
                     if (response.data.bool === true) {
-                        console.log("likes:", response.data.likes);
-                        $("#like-count"+btn_val).text(response.data.likes)
-                        $(".like-btn"+btn_val).addClass("text-blue-500")
-                        $(".like-btn"+btn_val).removeClass("text-black")
+                        console.log("Likes:", response.data.likes);
+                        $("#like-count" + btn_val).text(response.data.likes);
+                        $(".like-btn" + btn_val).addClass("text-blue-500").removeClass("text-black");
                     } else {
-                        $("#like-count"+btn_val).text(response.data.likes)
-                        $(".like-btn"+btn_val).addClass("text-black")
-                        $(".like-btn"+btn_val).removeClass("text-blue-500")
+                        $("#like-count" + btn_val).text(response.data.likes);
+                        $(".like-btn" + btn_val).addClass("text-black").removeClass("text-blue-500");
                     }
-
                 }
-            })
-        })
-    })
+            });
+        });
+    });
+    
 
 
 
