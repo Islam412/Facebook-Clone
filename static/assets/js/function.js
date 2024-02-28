@@ -185,10 +185,25 @@ $(document).ready(function(){
     // comment on post
     $(document).on("click", "#comment-btn", function(){
         let id = $(this).attr("data-comment-btn")
-        let comment = $("#comment-input"+id).val()
+        let comment = $("#comment-input" + id).val();
+
         console.log(id);
         console.log(comment);
-    })
+
+        $.ajax({
+            url: "/comment_on_post/",
+            dataType: "json",
+            data: {
+                "id": id,
+                "comment": comment,
+            },
+            success: function(response){
+                console.log(response);
+            },
+        });
+
+    });
+
 });
 
 

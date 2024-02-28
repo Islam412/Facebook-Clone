@@ -81,7 +81,7 @@ def like_post(request):
 
 def comment_on_post(request):
     id = request.GET['id']
-    Comment = request.GET['Comment']
+    comment = request.GET['comment']
     post = Post.objects.get(id=id)
     Comment_count = Comment.objects.filter(post=post).count()
     user = request.user
@@ -95,7 +95,7 @@ def comment_on_post(request):
     data = {
         'bool' : True,
         'comment' : new_comment.comment,
-        'profile_imaage' : new_comment.profile.image.url,
+        "profile_image":new_comment.user.profile.image.url,
         'date' : timesince(new_comment.date),
         'comment_id' : new_comment.id,
         'post_id' : new_comment.post.id,
