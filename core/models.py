@@ -46,6 +46,9 @@ class Post(models.Model):
     def thumbnail(self):
         return mark_safe('<img src="/media/%s" width="50" height="50" object-fit:"cover" style="border-radius: 5px;" />' % (self.image))
 
+    def post_comments(self):
+        comments = Comment.objects.filter(post=self, active=True)
+        return comments
 
 class Gallery(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='gellery')
