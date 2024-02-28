@@ -210,7 +210,7 @@
                                                 {% for posts_comments in post.post_comments %}
                                                     <div class="flex">
                                                         <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                                                            <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="" class="absolute h-full rounded-full w-full">
+                                                            <img src="{{posts_comments.user.profile.image.url}}" alt="" class="absolute h-full rounded-full w-full">
                                                         </div>
                                                         <div>
                                                             <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100">
@@ -237,7 +237,9 @@
 
                                             </div>
 
-                                            <a href="#" class="hover:text-blue-600 hover:underline">  Veiw 8 more Comments </a>
+                                            {% if post.post_comments.count > 0 %}
+                                                <a href="#" class="hover:text-blue-600 hover:underline">  Veiw {{post.post_comments.count}} more Comments </a>
+                                            {% endif %}
 
                                             <div class="bg-gray-100 rounded-full relative dark:bg-gray-800 border-t">
                                                 <input placeholder="Add your Comment.." id="comment-input{{post.id}}" data-comment-input="{{post.id}}" class="bg-transparent max-h-10 shadow-none px-5 comment-input{{post.id}}">
