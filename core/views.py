@@ -107,9 +107,9 @@ def comment_on_post(request):
 
 def like_comment(request):
     id = request.GET['id']
-    comment = Comment.objects.get(id=id)
-    user = user.request
-    bool = False
+    comment = Comment.objects.get(id=id)   # comment = Comment.object.first()
+    user = request.user
+    bool= False
 
     if user in comment.likes.all():
         comment.likes.remove(user)
@@ -119,8 +119,8 @@ def like_comment(request):
         bool = True
 
     data = {
-        'bool' : bool,
-        'likes' : comment.likes.all().count(),
+        'bool':bool,
+        'likes' :comment.likes.all().count(),
     }
 
     return JsonResponse({'data':data})
