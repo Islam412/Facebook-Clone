@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 
 import shortuuid
-from .models import Post, Comment
+from .models import Post, Comment, ReplyComment
 
 
 
@@ -124,3 +124,27 @@ def like_comment(request):
     }
 
     return JsonResponse({'data':data})
+
+
+def reply_comment(request):
+    id = request.GET['id']
+    reply = request.GET['reply']
+
+    new_reply = ReplyComment.objects.create(
+        comment=comment,
+        reply=reply,
+        user=user,
+    )
+
+    data = {
+        'bool': True,
+        'reply': new_reply.reply,
+        'profile_image': new_reply.user.profile.image.url,
+        'date': timesince(new_reply.date),
+        'reply_id': new_reply.id,
+        'post_id': new_reply.comment.post.id,
+    }
+
+    return JsonResponse({'data':data})
+
+
