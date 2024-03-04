@@ -224,6 +224,8 @@ $(document).ready(function(){
     });
     
 
+
+
     // like comment in post
     $(document).ready(function(){
         $(document).on("click", "#like-comment-btn", function(){
@@ -248,8 +250,10 @@ $(document).ready(function(){
             });
         });
     });
+
     
-    
+    //
+
 
 });
 
