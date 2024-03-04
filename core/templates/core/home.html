@@ -2,6 +2,15 @@
 {% load static %}
 {% block body %}
 
+
+<style>
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    summary::marker {
+    content: ""; /* Hide the pseudo-element */
+    }
+</style>
             <!-- Main Contents -->
             <div class="main_content">
                 <div class="mcontainer">
