@@ -130,6 +130,9 @@ def reply_comment(request):
     id = request.GET['id']
     reply = request.GET['reply']
 
+    comment = Comment.objects.get(id=id)
+    user = request.user
+
     new_reply = ReplyComment.objects.create(
         comment=comment,
         reply=reply,
