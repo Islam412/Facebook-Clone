@@ -224,6 +224,33 @@ $(document).ready(function(){
     });
     
 
+    // like comment in post
+    $(document).ready(function(){
+        $(document).on("click", "#like-comment-btn", function(){
+            let comment_like_id = $(this).attr("data-like-comment");
+            console.log("comment id", comment_like_id);
+    
+            $.ajax({
+                url: "/like_comment/",
+                dataType: "json",
+                data: {
+                    "id": comment_like_id,
+                },
+                success: function(response){
+                    if(response.data.bool === true){
+                        $("#comment-likes-count" + comment_like_id).text(response.data.likes);
+                        $(".like-comment" + comment_like_id).css("color", "red");
+                    } else {
+                        $("#comment-likes-count" + comment_like_id).text(response.data.likes);
+                        $(".like-comment" + comment_like_id).css("color", "gray");
+                    }
+                }
+            });
+        });
+    });
+    
+    
+
 });
 
 
