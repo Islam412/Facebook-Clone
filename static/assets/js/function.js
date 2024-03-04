@@ -259,6 +259,18 @@ $(document).ready(function(){
     
         console.log(id);
         console.log(reply);
+
+        $.ajax({
+            url: "/reply_comment/",
+            dataType: "json",
+            data: {
+                "id": id,
+                "reply": reply,
+            },
+            success: function(response){
+                console.log(response);
+            }
+        });
     });
     
 
