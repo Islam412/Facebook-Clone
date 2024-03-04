@@ -252,7 +252,10 @@ $(document).ready(function(){
     });
 
     
-    //
+    // reply_comment
+    $(document).on("click", "#reply-comment-btn", function(){
+        console.log("reply comment");
+    })
 
 
 });
