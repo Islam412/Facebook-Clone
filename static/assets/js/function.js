@@ -254,8 +254,13 @@ $(document).ready(function(){
     
     // reply_comment
     $(document).on("click", "#reply-comment-btn", function(){
-        console.log("reply comment");
-    })
+        let id = $(this).data("reply-comment-btn");
+        let reply = $("#reply-input" + id).val();
+    
+        console.log(id);
+        console.log(reply);
+    });
+    
 
 
 });
