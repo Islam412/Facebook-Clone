@@ -236,10 +236,11 @@
                                                                     <details-menu role="menu" class="origin-topf-right relative right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                                     <div class="pyf-1" role="none">
                                                                         <form method="POST" class="p-1 d-flex" action="#" role="none">
-                                                                            <input type="text"  class="with-border" name="" id="">
+                                                                            {% csrf_token %}
+                                                                            <input type="text"  class="with-border" name="" id="reply-input{{posts_comments.id}}">
                                                                             <button type="submit" class="block w-fulfl text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
-                                                                            <ion-icon name="send"></ion-icon>
-                                                                        </button>
+                                                                                <ion-icon name="send"></ion-icon>
+                                                                            </button>
                                                                         </form>
                                                                     </div>
                                                                     </details-menu>
