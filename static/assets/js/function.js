@@ -197,22 +197,40 @@ $(document).ready(function(){
                 console.log(response);
     
                 let newComment = `
-                <div class="flex card shadow p-2">
-                    <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                        <img src="${response.data.profile_image}" alt="" class="absolute h-full rounded-full w-full">
-                    </div>
-                    <div>
-                        <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100">
-                            <p class="leading-6">${response.data.comment}</p>
-                            <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800"></div>
-                        </div>
-                        <div class="text-sm flex items-center space-x-3 mt-2 ml-5">
-                            <a href="#" class="text-red-600"> <i class="uil-heart"></i> Love </a>
-                            <a href="#"> Replay </a>
-                            <span> ${response.data.date} </span>
-                        </div>
-                    </div>
-                </div>
+                <div class="flex card shadow p-2">\
+                    <div class="w-10 h-10 rounded-full relative flex-shrink-0">\
+                        <img src="${response.data.profile_image}" alt="" class="absolute h-full rounded-full w-full">\
+                    </div>\
+                    <div>\
+                        <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 relative lg:ml-5 ml-2 lg:mr-12  dark:bg-gray-800 dark:text-gray-100">\
+                            <p class="leading-6">${response.data.comment}</p>\
+                            <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 dark:bg-gray-800"></div>\
+                        </div>\
+                        <div class="text-sm flex items-center space-x-3 mt-2 ml-5">\
+                            <a href="#" class="text-red-600"> <i class="uil-heart"></i> Love </a>\
+                            
+                            <details >\
+                                <summary>\
+                                <div class="">Reply</div>\
+                                </summary>\
+                                <details-menu role="menu" class="origin-topf-right relative right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">\
+                                <div class="pyf-1" role="none">\
+                                    <div class="p-1 d-flex">\
+                                        <input type="text" class="with-border" name="" placeholder="Write Reply" id="reply-input${response.data.comment_id}">\
+                                        <button id="reply-comment-btn" data-reply-comment-btn="${response.data.comment_id}" type="submit" class="block w-fulfl text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 reply-comment-btn${response.data.comment_id}" role="menuitem">\
+                                            <ion-icon name="send"></ion-icon>\
+                                        </button>\
+                                    </div>\
+                                </div>\
+                                </details-menu>\
+                            </details>\
+
+                            <span> ${response.data.date} </span>\
+                        </div>\
+                        <div class="reply-div${response.data.comment_id}"></div>\
+
+                    </div>\
+                </div>\
                 `;
                 $("#comment-div" + id).prepend(newComment);
                 $("#comment-input" + id).val("");
