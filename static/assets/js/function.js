@@ -29,6 +29,7 @@ $(document).ready(function(){
             contentType: false,
 
             success: function(res){
+                console.log(res);
 
             
             
