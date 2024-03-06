@@ -46,7 +46,8 @@ def create_post(request):
             return JsonResponse({'post' :{
                 'title':post.title,
                 "image":post.image.url,
-                "full_name":post.user.profile.image.url,
+                "full_name":post.user.profile.full_name,
+                "profile_image":post.user.profile.image.url,
                 'date':timesince(post.date),
                 'id':post.id,
             }})
