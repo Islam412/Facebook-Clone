@@ -268,7 +268,7 @@ $(document).ready(function(){
             success: function(response){
                 // Cleaned up HTML string for new reply
                 let newReply = `
-                    <div class="flex mr-12" style="margin-right: 20px;">
+                    <div class="flex mr-12 mb-2 mt-2" style="margin-right: 20px;">
                         <div class="w-10 h-10 rounded-full relative flex-shrink-0">
                             <img src="${response.data.profile_image}" style="width: 40px; height: 40px;" alt="" class="absolute h-full rounded-full w-full">
                         </div>
