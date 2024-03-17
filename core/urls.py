@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import home, create_post, like_post, comment_on_post, like_comment, reply_comment
+from .views import home, create_post, like_post, comment_on_post, like_comment, reply_comment, delete_comment
 
 
 app_name = 'core'
@@ -12,4 +12,5 @@ urlpatterns = [
     path('comment_on_post/',comment_on_post, name='comment_on_post'),
     path('like_comment/',like_comment, name='like_comment'),
     path('reply_comment/',reply_comment, name='reply_comment'),
+    path('delete_comment/',delete_comment, name='delete_comment'),
 ]
