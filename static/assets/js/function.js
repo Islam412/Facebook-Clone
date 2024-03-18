@@ -268,7 +268,7 @@ $(document).ready(function(){
     });
 
     
-    // reply_comment
+    // reply comment
     $(document).on("click", "#reply-comment-btn", function(){
         let id = $(this).data("reply-comment-btn");
         let reply = $("#reply-input" + id).val();
@@ -306,6 +306,23 @@ $(document).ready(function(){
     
     
 
+    // delete comment
+    $(document).on("click", "#delete-comment", function(){
+        let id = $(this).attr("data-delete-comment");
+        console.log(id); // Log the value of id variable
+    
+        $.ajax({
+            url: "/delete_comment/",
+            dataType: "json",
+            data: {
+                "id": id // Corrected data assignment
+            },
+            success: function(response){
+                console.log("comment", id, "delete");
+            }
+        });
+    });
+    
 
 });
 
