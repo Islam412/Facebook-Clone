@@ -155,7 +155,7 @@ def reply_comment(request):
 
 def delete_comment(request):
     id = request.GET['id']
-    comment = Comment.objects,get(id=id)
+    comment = Comment.objects.get(id=id)
     comment.delete()
 
     data = {
