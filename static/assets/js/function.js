@@ -319,6 +319,7 @@ $(document).ready(function(){
             },
             success: function(response){
                 console.log("comment", id, "delete");
+                $("#comment-div"+id).addClass("d-none")
             }
         });
     });
