@@ -159,9 +159,20 @@ def delete_comment(request):
     comment.delete()
 
     data = {
-        'bool': True,
+        'bool' : True,
     }
 
     return JsonResponse({'data':data})
 
 
+def delete_reply_comment(request):
+    id = request.GET['id']
+    reply = ReplyComment.objects.get(id=id)
+    reply.delete()
+    
+    data = {
+        'bool' : True,
+    }
+    
+    return JsonResponse({'data':data})
+    
