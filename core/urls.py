@@ -7,7 +7,7 @@ app_name = 'core'
 
 urlpatterns = [
     path('',home, name='home'),
-    path('<slug:slug>/',post_detail, name='post_detail'),
+    path('post/<slug:slug>/',post_detail, name='post_detail'),
     
     # Ajax urls
     path('create_post/',create_post, name='create_post'),

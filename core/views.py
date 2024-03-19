@@ -23,7 +23,7 @@ def home(request):
 
 @login_required
 def post_detail(request, slug):
-    post = Post.objects.get(slug=slug, active=True, visibility='Everyone')
+    post = Post.objects.get(slug=slug, active=True, visibility='Everyone')   # id = request.GET['id]          post = Post.objects.get(id=id)
     context = {
         "post":post
     }
