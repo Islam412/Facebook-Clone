@@ -284,10 +284,11 @@
 
 
                                             </div>
-
                                             {% if post.post_comments.count > 0 %}
-                                                <a href="{% url "core:post_detail" post.slug %}" class="hover:text-blue-600 hover:underline">Veiw All {{post.post_comments.count}} Comments</a>
+                                                <a href="{% url 'core:post_detail' post.slug %}" class="hover:text-blue-600 hover:underline">View All {{ post.post_comments.count }} Comments</a>
                                             {% endif %}
+
+
 
                                             <div class="bg-gray-100 rounded-full relative dark:bg-gray-800 border-t">
                                                 <input placeholder="Add your Comment.." id="comment-input{{post.id}}" data-comment-input="{{post.id}}" class="bg-transparent max-h-10 shadow-none px-5 comment-input{{post.id}}">
