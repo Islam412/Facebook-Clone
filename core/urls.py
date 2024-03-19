@@ -7,6 +7,9 @@ app_name = 'core'
 
 urlpatterns = [
     path('',home, name='home'),
+    path('<slug:slug>/',post_detail, name='post_detail'),
+    
+    # Ajax urls
     path('create_post/',create_post, name='create_post'),
     path('like_post/',like_post, name='like_post'),
     path('comment_on_post/',comment_on_post, name='comment_on_post'),
@@ -14,5 +17,4 @@ urlpatterns = [
     path('reply_comment/',reply_comment, name='reply_comment'),
     path('delete_comment/',delete_comment, name='delete_comment'),
     path('delete_reply_comment/',delete_reply_comment, name='delete_reply_comment'),
-    path('post_detail/',post_detail, name='post_detail'),
 ]
