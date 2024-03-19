@@ -330,7 +330,7 @@ $(document).ready(function(){
     $(document).on("click", "#delete-reply", function(){
         let id = $(this).attr("data-delete-reply");
         console.log(id);
-
+    
         $.ajax({
             url: "/delete_reply_comment/",
             dataType: "json",
@@ -339,9 +339,14 @@ $(document).ready(function(){
             },
             success: function(response){
                 console.log("reply", id, "delete");
+                $("#reply-div" + id).addClass("d-none");
+            },
+            error: function(xhr, status, error) {
+                console.log("Error:", error); // Log any errors that occur during the AJAX request
             }
-        })
+        });
     });
+    
     
 
 });
