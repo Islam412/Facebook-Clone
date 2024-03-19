@@ -21,6 +21,15 @@ def home(request):
     return render(request,'core/home.html', context)
 
 
+@login_required
+def post_detail(request, slug):
+    post = Post.objects.get(slug=slug, active=True, visibility='Everyone')
+    context = {
+        "post":post
+    }
+    return render(request, 'core/post_detail.html', context)
+
+
 @csrf_exempt
 def create_post(request):
     if request.method == "POST":
