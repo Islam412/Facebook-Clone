@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from userauths.models import User, Profile
 from userauths.forms import UserRegisterForm
+from core.models import Post
 
 
 def RegisterView(request, *args, **kwargs):
@@ -68,3 +69,16 @@ def LogoutView(request):
     logout(request)
     messages.success(request, 'You have been logged out')
     return redirect("userauths:sign-up")
+
+
+@login_required
+def my_profile(request):
+    profile = request.user.profile
+    post = Post.objects.filter(active=True, user=request.user)
+    
+    context = {
+       'profile':profile,
+       'post':post 
+    }
+    
+    return render(request, 'userauths/my-profile.html', context)
