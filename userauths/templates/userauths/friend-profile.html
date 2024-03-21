@@ -16,7 +16,7 @@
                 <div class="profile user-profile">
 
                     <div class="profiles_banner">
-                        <img src="{{request.user.profile.cover_image.url}}" alt="">
+                        <img src="{{profile.cover_image.url}}" alt="">
                         <div class="profile_action absolute bottom-0 right-0 space-x-1.5 p-3 text-sm z-50 hidden lg:flex">
                             <a href="#" class="flex items-center justify-center h-8 px-3 rounded-md bg-gray-700 bg-opacity-70 text-white space-x-1.5">
                                 <ion-icon name="crop-outline" class="text-xl"></ion-icon>
@@ -32,7 +32,7 @@
 
                         <div class="profile_avatar">
                             <div class="profile_avatar_holder">
-                                <img src="{{request.user.profile.image.url}}" alt="">
+                                <img src="{{profile.image.url}}" alt="">
                             </div>
                             <div class="user_status status_online"></div>
                             <div class="icon_change_photo" hidden>
@@ -41,8 +41,8 @@
                         </div>
 
                         <div class="profile_info">
-                            <h1> {{request.user.profile.full_name}} </h1>
-                            <p class="text-center"> {{request.user.profile.bio}}</p>
+                            <h1> {{profile.full_name}} </h1>
+                            <p class="text-center"> {{profile.bio}}</p>
                         </div>
 
                     </div>
@@ -51,7 +51,7 @@
                         <nav class="responsive-nav pl-3">
                             <ul uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
                                 <li><a href="#">Timeline</a></li>
-                                <li><a href="#">Friends <span>{{request.user.profile.friends.all.count}}</span> </a></li>
+                                <li><a href="#">Friends <span>{{profile.friends.all.count}}</span> </a></li>
                                 <li><a href="#">Photoes </a></li>
                                 <li><a href="#">Pages</a></li>
                                 <li><a href="#">Groups</a></li>
@@ -408,11 +408,13 @@
                                 <a href="#" class="button gray mt-3 w-full"> Edit </a>
                             </div>
 
+
+                            
                             <div class="widget card p-5 border-t">
                                 <div class="flex items-center justify-between mb-4">
                                     <div>
                                         <h4 class="text-lg font-semibold"> Friends </h4>
-                                        <p class="text-sm"> 3,4510 Friends</p>
+                                        <p class="text-sm"> 3,123 Friends</p>
                                     </div>
                                     <a href="#" class="text-blue-600 ">See all</a>
                                 </div>
@@ -528,18 +530,18 @@
 
                         <nav class="responsive-nav border-b">
                             <ul>
-                                <li class="active"><a href="#" class="lg:px-2"> All Friends <span> {{request.user.profile.friends.all.count}} </span> </a></li>
+                                <li class="active"><a href="#" class="lg:px-2"> All Friends <span> {{profile.friends.all.count}} </span> </a></li>
                             </ul>
                         </nav>
 
                         <div class="grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-x-2 gap-y-4 mt-3">
-                            {% for friend in request.user.profile.friends.all %}
+                            {% for friend in profile.friends.all %}
                                 <div class="card p-2">
-                                    <a href="timeline.html">
+                                    <a href="{% url 'userauths:friend-profile' friend.username %}">
                                         <img src="{{friend.profile.image.url}}" class="h-36 object-cover rounded-md shadow-sm w-full">
                                     </a>
                                     <div class="pt-3 px-1">
-                                        <a href="timeline.html" class="text-base font-semibold mb-0.5">  {{friend.profile.full_name}} </a>
+                                        <a href="{% url 'userauths:friend-profile' friend.username %}" class="text-base font-semibold mb-0.5">  {{friend.profile.full_name}} </a>
                                         <p class="font-medium text-sm">{{friend.profile.friends.all.count}} Friends </p>
                                         <button class="bg-blue-100 w-full flex font-semibold h-8 items-center justify-center mt-3 px-3 rounded-md text-blue-600 text-sm mb-1">
                                             Add Friend

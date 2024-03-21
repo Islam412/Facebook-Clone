@@ -38,7 +38,7 @@ def RegisterView(request, *args, **kwargs):
     context = {'form':form}
     return render(request, 'userauths/sign-up.html', context)
 
-# @login_required
+
 def LoginView(request):
     if request.user.is_authenticated:
         return redirect('core:home')
@@ -95,3 +95,6 @@ def friend_profile(request, username):
     }
     
     return render(request, 'userauths/friend-profile.html', context)
+
+
+
