@@ -87,7 +87,7 @@ def my_profile(request):
 @login_required
 def friend_profile(request, username):
     profile = Profile.objects.get(user__username=username)
-    posts = Post.objects.filter(active=True, user=request.user).order_by("-id")
+    posts = Post.objects.filter(active=True, user=profile.user).order_by("-id")
     
     context = {
         'profile':profile,
