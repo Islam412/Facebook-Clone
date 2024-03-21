@@ -51,7 +51,7 @@
                         <nav class="responsive-nav pl-3">
                             <ul uk-switcher="connect: #timeline-tab; animation: uk-animation-fade">
                                 <li><a href="#">Timeline</a></li>
-                                <li><a href="#">Friend <span>3,243</span> </a></li>
+                                <li><a href="#">Friends <span>{{request.user.profile.friends.all.count}}</span> </a></li>
                                 <li><a href="#">Photoes </a></li>
                                 <li><a href="#">Pages</a></li>
                                 <li><a href="#">Groups</a></li>
