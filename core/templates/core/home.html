@@ -99,11 +99,11 @@
                                         <div class="card lg:mx-0 uk-animation-slide-bottom-small mt-3 md-3">
                                             <div class="flex justify-between items-center lg:p-4 p-2.5">
                                                 <div class="flex flex-1 items-center space-x-4">
-                                                    <a href="#">
+                                                    <a href="{% url 'userauths:friend-profile' post.user.username %}">
                                                         <img src="{{post.user.profile.image.url}}" class="bg-gray-200 border border-white rounded-full w-10 h-10">
                                                     </a>
                                                     <div class="flex-1 font-semibold capitalize">
-                                                        <a href="#" class="text-black dark:text-gray-100"> {{post.user}} </a>
+                                                        <a href="{% url 'userauths:friend-profile' post.user.username %}" class="text-black dark:text-gray-100"> {{post.user.profile.full_name}} </a>
                                                         <div class="text-gray-700 flex items-center space-x-2"><span><small> {{post.date|timesince}} </small></span>
                                                             <ion-icon name="time"></ion-icon>
                                                         </div>
