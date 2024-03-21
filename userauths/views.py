@@ -74,11 +74,11 @@ def LogoutView(request):
 @login_required
 def my_profile(request):
     profile = request.user.profile
-    post = Post.objects.filter(active=True, user=request.user)
+    posts = Post.objects.filter(active=True, user=request.user).order_by("-id")
     
     context = {
        'profile':profile,
-       'post':post 
+       'posts':posts
     }
     
     return render(request, 'userauths/my-profile.html', context)
