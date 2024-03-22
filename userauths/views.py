@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from userauths.models import User, Profile
 from userauths.forms import UserRegisterForm
-from core.models import Post
+from core.models import Post, FriendRequest
 
 
 def RegisterView(request, *args, **kwargs):
@@ -89,9 +89,25 @@ def friend_profile(request, username):
     profile = Profile.objects.get(user__username=username)
     posts = Post.objects.filter(active=True, user=profile.user).order_by("-id")
     
+    bool = False
+    bool_friend = False
+    
+    sender = request.user
+    receiver = profile.user
+    
+    try:
+        friend_request = FriendRequest.objects.get(sender=sender, receiver=receiver)
+        if friend_request:
+            bool = True
+        else:
+            bool = False
+    except:
+        bool = False
+    
     context = {
         'profile':profile,
         'posts':posts,
+        'bool':bool
     }
     
     return render(request, 'userauths/friend-profile.html', context)

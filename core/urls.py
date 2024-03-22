@@ -17,5 +17,5 @@ urlpatterns = [
     path('reply_comment/',reply_comment, name='reply_comment'),
     path('delete_comment/',delete_comment, name='delete_comment'),
     path('delete_reply_comment/',delete_reply_comment, name='delete_reply_comment'),
-    path('add_friend/',add_friend, name='add_friend'),
+    path('add_friendpython manage.py /',add_friend , name='add_friendpython manage.py '),
 ]
