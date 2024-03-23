@@ -64,26 +64,17 @@
 
                             <!-- add friend -->
                             {% if profile.user in request.user.profile.friends.all %}
-                                <a href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white" uk-toggle="target: #create-post-modal"> 
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    <span> Unfriend </span>
+                                <a id="unfriend" data-unfriend="{{profile.user.id}}" href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-red-600 text-white space-x-1.5 hover:text-white unfriend{{profile.user.id}}" uk-toggle="target: #create-post-modal"> 
+                                    <span <i class="fas fa-user-minus"></i> Unfriend </span>
                                 </a>
                             {% else %}
                                 {% if bool == True %}
-                                    <a href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white" uk-toggle="target: #create-post-modal"> 
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span> Cancel request </span>
+                                    <a id="add-friend" data-friend-id="{{profile.user.id}}" href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-red-600 text-white space-x-1.5 hover:text-white addfriend{{profile.user.id}}" uk-toggle="target: #create-post-modal"> 
+                                        <span <i class="fas fa-user-minus"></i> Cancel request </span>
                                     </a>
                                 {% else %}
-                                    <a href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white" uk-toggle="target: #create-post-modal"> 
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span> Add friend </span>
+                                    <a id="unfriend" data-unfriend="{{profile.user.id}}" href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white unfriend{{profile.user.id}}" uk-toggle="target: #create-post-modal"> 
+                                        <span <i class="fas fa-user-plus"></i> Add friend </span>
                                     </a>
                                 {% endif %}
                             {% endif %}
