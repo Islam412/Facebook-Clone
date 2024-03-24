@@ -346,6 +346,12 @@ $(document).ready(function(){
             }
         });
     });
+
+
+    // add friend
+    $(document).on("click", "#add-friend", function(){
+        console.log("Add");
+    })
     
     
 
