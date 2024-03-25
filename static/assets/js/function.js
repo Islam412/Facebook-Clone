@@ -352,6 +352,17 @@ $(document).ready(function(){
     $(document).on("click", "#add-friend", function(){
         let id = $(this).attr("data-friend-id");
         console.log("Added " + id + " as Friend");
+
+        $.ajax({
+            url: "/add_friend/",
+            dataType: "json",
+            data: {
+                "id":id
+            },
+            success: function(response){
+                console.log(response);
+            }
+        })
     })
     
     
