@@ -352,18 +352,30 @@ $(document).ready(function(){
     $(document).on("click", "#add-friend", function(){
         let id = $(this).attr("data-friend-id");
         console.log("Added " + id + " as Friend");
-
+    
         $.ajax({
             url: "/add_friend/",
             dataType: "json",
             data: {
-                "id":id
+                "id": id
             },
             success: function(response){
                 console.log(response);
+                if(response.bool === true){
+                    $("#friend-text").html('<i class="fas fa-user-minus"></i> Cancel request');
+                    $(".add-friend"+id).addClass("bg-red-600");
+                    $(".add-friend"+id).removeClass("bg-blue-600");
+                } else {
+                    if(response.bool === false){
+                        $("#friend-text").html('<i class="fas fa-user-plus"></i> Add friend');
+                        $(".add-friend"+id).addClass("bg-blue-600");
+                        $(".add-friend"+id).removeClass("bg-red-600");
+                    }
+                }
             }
-        })
-    })
+        });
+    });
+    
     
     
 
