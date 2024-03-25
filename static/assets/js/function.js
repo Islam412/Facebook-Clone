@@ -350,7 +350,8 @@ $(document).ready(function(){
 
     // add friend
     $(document).on("click", "#add-friend", function(){
-        console.log("Add");
+        let id = $(this).attr("data-friend-id");
+        console.log("Added " + id + " as Friend");
     })
     
     

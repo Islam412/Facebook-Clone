@@ -64,16 +64,16 @@
 
                             <!-- add friend -->
                             {% if profile.user in request.user.profile.friends.all %}
-                                <a id="unfriend" data-unfriend="{{profile.user.id}}" href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-red-600 text-white space-x-1.5 hover:text-white unfriend{{profile.user.id}}" uk-toggle="target: #create-post-modal"> 
+                                <a id="unfriend" data-unfriend="{{profile.user.id}}" href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-red-600 text-white space-x-1.5 hover:text-white unfriend{{profile.user.id}}"> 
                                     <span <i class="fas fa-user-minus"></i> Unfriend </span>
                                 </a>
                             {% else %}
                                 {% if bool == True %}
-                                    <a id="add-friend" data-friend-id="{{profile.user.id}}" href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-red-600 text-white space-x-1.5 hover:text-white addfriend{{profile.user.id}}" uk-toggle="target: #create-post-modal"> 
+                                    <a id="add-friend" data-friend-id="{{profile.user.id}}" href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-red-600 text-white space-x-1.5 hover:text-white add-friend{{profile.user.id}}"> 
                                         <span <i class="fas fa-user-minus"></i> Cancel request </span>
                                     </a>
                                 {% else %}
-                                    <a id="unfriend" data-unfriend="{{profile.user.id}}" href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white unfriend{{profile.user.id}}" uk-toggle="target: #create-post-modal"> 
+                                    <a id="add-friend" data-friend-id="{{profile.user.id}}" href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white add-friend{{profile.user.id}}"> 
                                         <span <i class="fas fa-user-plus"></i> Add friend </span>
                                     </a>
                                 {% endif %}
