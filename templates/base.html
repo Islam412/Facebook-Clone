@@ -394,8 +394,8 @@
                             
                             <!--Friend Request-->
                             <a href="#" class="is_icon" uk-tooltip="title: Friend Request">
-                                <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg>
-                                <span>3</span>
+                                <i class="fas fa-user text-gray-600"></i>
+                                <span>{{ friend_request.count }}</span>
                             </a>
 
 
@@ -430,142 +430,7 @@
                                                 </div>
                                             </a>
                                         </li>
-                                        <li class="not-read">
-                                            <a href="#">
-                                                <div class="drop_avatar status-online"> <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" alt="">
-                                                </div>
-                                                <div class="drop_text">
-                                                    <p>
-                                                        <strong>Stella Johnson</strong> Replay Your Comments in
-                                                        <span class="text-link">Adobe XD Tutorial</span>
-                                                    </p>
-                                                    <time> 9 hours ago </time>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="drop_avatar"> <img src="{% static 'assets/images/avatars/avatar-3.jpg' %}" alt="">
-                                                </div>
-                                                <span class="drop_icon bg-gradient-primary">
-                                                    <i class="icon-feather-thumbs-up"></i>
-                                                </span>
-                                                <div class="drop_text">
-                                                    <p>
-                                                        <strong>Alex Dolgove</strong> Added New Review In Video
-                                                        <span class="text-link">Full Stack PHP Developer</span>
-                                                    </p>
-                                                    <time> 12 hours ago </time>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="drop_avatar"> <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="">
-                                                </div>
-                                                <div class="drop_text">
-                                                    <p>
-                                                        <strong>Jonathan Madano</strong> Shared Your Discussion On Video
-                                                        <span class="text-link">Css Flex Box </span>
-                                                    </p>
-                                                    <time> Yesterday </time>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="drop_avatar"> <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="">
-                                                </div>
-                                                <span class="drop_icon bg-gradient-primary">
-                                                    <i class="icon-feather-thumbs-up"></i>
-                                                </span>
-                                                <div class="drop_text">
-                                                    <p>
-                                                        <strong>Adrian Mohani</strong> Like Your Comment On Course
-                                                        <span class="text-link">Javascript Introduction </span>
-                                                    </p>
-                                                    <time> 2 hours ago </time>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="drop_avatar status-online"> <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" alt="">
-                                                </div>
-                                                <div class="drop_text">
-                                                    <p>
-                                                        <strong>Stella Johnson</strong> Replay Your Comments in
-                                                        <span class="text-link">Programming for Games</span>
-                                                    </p>
-                                                    <time> 9 hours ago </time>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="drop_avatar"> <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" alt="">
-                                                </div>
-                                                <div class="drop_text">
-                                                    <p>
-                                                        <strong>Stella Johnson</strong> Replay Your Comments in
-                                                        <span class="text-link">Programming for Games</span>
-                                                    </p>
-                                                    <time> 9 hours ago </time>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="drop_avatar"> <img src="{% static 'assets/images/avatars/avatar-3.jpg' %}" alt="">
-                                                </div>
-                                                <div class="drop_text">
-                                                    <p>
-                                                        <strong>Alex Dolgove</strong> Added New Review In Course
-                                                        <span class="text-link">Full Stack PHP Developer</span>
-                                                    </p>
-                                                    <time> 12 hours ago </time>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="drop_avatar"> <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="">
-                                                </div>
-                                                <div class="drop_text">
-                                                    <p>
-                                                        <strong>Jonathan Madano</strong> Shared Your Discussion On Course
-                                                        <span class="text-link">Css Flex Box </span>
-                                                    </p>
-                                                    <time> Yesterday </time>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="drop_avatar"> <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="">
-                                                </div>
-                                                <div class="drop_text">
-                                                    <p>
-                                                        <strong>Adrian Mohani</strong> Like Your Comment On Course
-                                                        <span class="text-link">Javascript Introduction </span>
-                                                    </p>
-                                                    <time> 2 hours ago </time>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="drop_avatar"> <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" alt="">
-                                                </div>
-                                                <div class="drop_text">
-                                                    <p>
-                                                        <strong>Stella Johnson</strong> Replay Your Comments in
-                                                        <span class="text-link">Programming for Games</span>
-                                                    </p>
-                                                    <time> 9 hours ago </time>
-                                                </div>
-                                            </a>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </div>
