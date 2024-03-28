@@ -417,10 +417,10 @@
                                             <li class="mt-3 mb-4 shadow p-3">
                                                 <a href="#">
                                                     <div class="drop_avatar">
-                                                        <img src="{{friend.sender.profile.image.url}}"style="width:60px ; height:45px ;" alt="">
+                                                        <img src="{{friend.sender.profile.image.url}}"style="width:100px ; height:60px ;" alt="">
                                                     </div>
                                                     <!-- <span class="drop_icon bg-gradient-primary">
-                                                        <i class="icon-feather-thumbs-up"></i>
+                                                        <i class="fas fa-user-plus"></i>
                                                     </span> -->
                                                     <div class="drop_text">
                                                         <p> <strong>{{friend.sender.profile.full_name}}</strong> send you a friend request. </p>
@@ -436,6 +436,8 @@
                                                     </div>
                                                 </a>
                                             </li>
+                                            {% empty %}
+                                            <h5>No Friend Requests</h5>
                                         {% endfor %}
 
                                     </ul>
