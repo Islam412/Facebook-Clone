@@ -384,19 +384,28 @@
                                 <ul class="text-gray-600 space-y-3 mt-3">
                                     <li class="flex items-center space-x-2">
                                         <ion-icon name="home-sharp" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                                        Live In <strong> Cairo , Eygept  </strong>
+                                        
+                                        {% if profile.country and profile.city %}
+                                        Live In <strong> {{profile.city}}, {{profile.country}}  </strong>
+                                        {% else %}
+                                        Live In <strong> <a href="" class="dashed">Not added yet</a>  </strong>
+                                        {% endif %}
                                     </li>
                                     <li class="flex items-center space-x-2">
                                         <ion-icon name="globe" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                                        From <strong> Aden , Yemen  </strong>
+                                        {% if profile.country and profile.city %}
+                                        Live In <strong> {{profile.city}}, {{profile.country}}  </strong>
+                                        {% else %}
+                                        From <strong> <a href="" class="dashed">Not added yet</a>  </strong>
+                                        {% endif %}
                                     </li>
                                     <li class="flex items-center space-x-2">
                                         <ion-icon name="heart-sharp" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                                        From <strong> Relationship  </strong>
+                                        Relationship <strong> {{profile.relationship|title}}  </strong>
                                     </li>
                                     <li class="flex items-center space-x-2">
                                         <ion-icon name="logo-rss" class="rounded-full bg-gray-200 text-xl p-1 mr-3"></ion-icon>
-                                        Flowwed By <strong> 3,240 People </strong>
+                                        Followed By <strong> {{profile.followers.all.count}} People </strong>
                                     </li>
                                 </ul>
                                 <div class="gap-3 grid grid-cols-3 mt-4">
@@ -412,47 +421,20 @@
                                 <div class="flex items-center justify-between mb-4">
                                     <div>
                                         <h4 class="text-lg font-semibold"> Friends </h4>
-                                        <p class="text-sm"> 3,4510 Friends</p>
+                                        <p class="text-sm"> {{profile.friends.all.count}} Friends</p>
                                     </div>
                                     <a href="#" class="text-blue-600 ">See all</a>
                                 </div>
                                 <div class="grid grid-cols-3 gap-3 text-gray-600 font-semibold">
-                                    <a href="#">
-                                        <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2">
-                                            <img src="assets/images/avatars/avatar-1.jpg" alt="" class="w-full h-full object-cover absolute">
-                                        </div>
-                                        <div class="text-sm truncate"> Dennis Han </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2">
-                                            <img src="assets/images/avatars/avatar-2.jpg" alt="" class="w-full h-full object-cover absolute">
-                                        </div>
-                                        <div class="text-sm truncate"> Erica Jones </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2">
-                                            <img src="assets/images/avatars/avatar-3.jpg" alt="" class="w-full h-full object-cover absolute">
-                                        </div>
-                                        <div class="text-sm truncate"> Stella Johnson </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2">
-                                            <img src="assets/images/avatars/avatar-4.jpg" alt="" class="w-full h-full object-cover absolute">
-                                        </div>
-                                        <div class="text-sm truncate"> Alex Dolgove</div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2">
-                                            <img src="assets/images/avatars/avatar-5.jpg" alt="" class="w-full h-full object-cover absolute">
-                                        </div>
-                                        <div class="text-sm truncate"> Jonathan Ali </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2">
-                                            <img src="assets/images/avatars/avatar-6.jpg" alt="" class="w-full h-full object-cover absolute">
-                                        </div>
-                                        <div class="text-sm truncate"> Erica Han </div>
-                                    </a>
+                                    {% for friend in request.user.profile.friends.all %}
+                                        <a href="#">
+                                            <div class="avatar relative rounded-md overflow-hidden w-full h-24 mb-2">
+                                                <img src="{{friend.profile.image.url}}" alt="" class="w-full h-full object-cover absolute">
+                                            </div>
+                                            <div class="text-sm truncate"> {{friend.profile.full_name}} </div>
+                                        </a>
+                                    {% endfor %}
+
                                 </div>
                                 <a href="#" class="button gray mt-3 w-full">  See all </a>
                             </div>
