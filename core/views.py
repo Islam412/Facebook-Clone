@@ -211,6 +211,22 @@ def add_friend(request):
         bool = True
         return JsonResponse({'success':'Sent', 'bool':bool})
 
-        
-        
+
+def accept_friend_request(request):
+    id = request.GET['id']
     
+    receiver = request.user
+    sender = User.objects.get(id=id)
+    
+    friend_request = FriendRequest.objects.filter(receiver=receiver, sender=sender).first()
+    
+    receiver.profile.friends.add(sender)
+    sender.profile.friends.add(receiver)
+    
+    friend_request.delete()
+    
+    data = {
+        'message' : 'Accepted',
+        'bool' : True,
+    }
+    return JsonResponse({"data":data})
