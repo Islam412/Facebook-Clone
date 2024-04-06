@@ -230,3 +230,19 @@ def accept_friend_request(request):
         'bool' : True,
     }
     return JsonResponse({"data":data})
+
+
+def reject_friend_request(request):
+    id = request.GET['id']
+    
+    receiver = request.user
+    sender = User.objects.get(id=id)
+    
+    friend_request = FriendRequest.objects.filter(receiver=receiver, sender=sender).first()    
+    friend_request.delete()
+    
+    data = {
+        'message' : 'Accepted',
+        'bool' : True,
+    }
+    return JsonResponse({"data":data})
