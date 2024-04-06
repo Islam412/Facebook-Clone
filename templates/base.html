@@ -427,7 +427,7 @@
                                                         <time> {{friend.date|timesince}} ago </time>
                                                     </div>
                                                     <div class="d-flex" id="friend-request-button-div">
-                                                        <a id="accept-friend-request" data-request-id="{{friend.sender.id}}" class="accept-friend-request-hide{{friend.sender.id}} flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white" style="margin-left: 5px;"> 
+                                                        <a id="accept-friend-request" data-request-id="{{friend.sender.id}}" class="accept-friend-request-hide{{friend.sender.id}} accept_friend_request{{friend.sender.id}} flex items-center justify-center h-10 px-5 rounded-md bg-blue-600 text-white space-x-1.5 hover:text-white" style="margin-left: 5px;"> 
                                                             <span style="cursor: pointer;" class="text-white accept-friend-request{{friend.sender.id}}" id="friend-text"><i class="fas fa-user-plus"></i> Accept </span>
                                                         </a>
                                                         <a id="reject-friend-request" data-request-id="{{friend.sender.id}}" class="reject-friend-request-hide{{friend.sender.id}} flex items-center justify-center h-10 px-5 rounded-md bg-red-600 text-white space-x-1.5 hover:text-white" style="margin-left: 5px;"> 
