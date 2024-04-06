@@ -411,8 +411,13 @@ $(document).ready(function(){
             data: {
                 "id":id
             },
+            // run def reject_friend_request in views
             success: function(response){
                 console.log(response);
+
+                // run def reject_friend_request in views with ajax
+                $(".accept-friend-request-hide"+id).hide()
+                $(".reject-friend-request"+id).html('<i class="fas fa-check-circle"></i> Friend Request Deleted');
 
             }
         })
