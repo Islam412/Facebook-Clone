@@ -242,7 +242,7 @@ def reject_friend_request(request):
     friend_request.delete()
     
     data = {
-        'message' : 'Accepted',
+        'message' : 'Rejected',
         'bool' : True,
     }
     return JsonResponse({"data":data})
