@@ -375,6 +375,27 @@ $(document).ready(function(){
             }
         });
     });
+
+
+
+    // Accept friend request
+    $(document).on("click", "#accept-friend-request", function(){
+        let id = $(this).attr("data-request-id");
+        console.log(id);
+
+        $.ajax({
+            url: "/accept_friend_request/",
+            dataType: "json",
+            data: {
+                "id":id
+            },
+            success: function(response){
+                console.log(response);
+                $(".reject-friend-request-hide"+id).hide()
+                $(".accept_friend_request"+id).html('<i class="fas fa-check-circle"></i> Friend Request Accepted');
+            }
+        })
+    })
     
     
     
