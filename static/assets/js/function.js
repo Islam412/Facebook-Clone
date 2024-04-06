@@ -396,6 +396,17 @@ $(document).ready(function(){
             }
         })
     })
+
+
+
+    
+    // Reject friend request
+    $(document).on("click", "#reject-friend-request", function(){
+        let id = $(this).attr("data-request-id");
+        console.log(id);
+
+
+    })
     
     
     
