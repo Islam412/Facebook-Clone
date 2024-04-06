@@ -238,8 +238,8 @@ def reject_friend_request(request):
     receiver = request.user
     sender = User.objects.get(id=id)
     
-    friend_request = FriendRequest.objects.filter(receiver=receiver, sender=sender).first()    
-    friend_request.delete()
+    friend_reject = FriendRequest.objects.filter(receiver=receiver, sender=sender).first()    
+    friend_reject.delete()
     
     data = {
         'message' : 'Rejected',
