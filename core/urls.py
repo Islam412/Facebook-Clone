@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import home, create_post, like_post, comment_on_post, like_comment, reply_comment, delete_comment, delete_reply_comment, post_detail, add_friend, accept_friend_request, reject_friend_request
+from .views import home, create_post, like_post, comment_on_post, like_comment, reply_comment, delete_comment, delete_reply_comment, post_detail, add_friend, accept_friend_request, reject_friend_request, unfriend
 
 app_name = 'core'
 
@@ -19,4 +19,5 @@ urlpatterns = [
     path('add_friend/',add_friend , name='add_friend'),
     path('accept_friend_request/',accept_friend_request , name='accept_friend_request'),
     path('reject_friend_request/',reject_friend_request , name='reject_friend_request'),
+    path('unfriend/',unfriend , name='unfriend'),
 ]
