@@ -19,5 +19,5 @@ urlpatterns = [
     path('add_friend/',add_friend , name='add_friend'),
     path('accept_friend_request/',accept_friend_request , name='accept_friend_request'),
     path('reject_friend_request/',reject_friend_request , name='reject_friend_request'),
-    path('un-friend/',unfriend , name='unfriend'),
+    path('unfriend/',unfriend , name='unfriend'),
 ]

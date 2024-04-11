@@ -430,7 +430,7 @@ $(document).ready(function(){
         console.log(id);
     
         $.ajax({
-            url: "/un-friend/",
+            url: "/unfriend/",
             dataType: "json",
             data: {
                 "id": id,
