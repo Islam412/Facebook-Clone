@@ -424,7 +424,22 @@ $(document).ready(function(){
     })
 
 
-    // 
+    // unfriend
+    $(document).on("click", "#unfriend", function(){
+        let id = $(this).attr("data-unfriend");
+        console.log(id);
+
+        $.ajax({
+            url: "/un-friend/",
+            dataType: "json",
+            data: {
+                "id":id,
+            },
+            success: function(response){
+                console.log(response);
+            }
+        })
+    })
     
     
     
