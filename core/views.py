@@ -102,6 +102,9 @@ def like_post(request):
     else:
         post.likes.add(user)
         bool = True
+        
+        if post.user != request.user:
+            send_notification(post.user, user, post, None, noti_new_like)
 
     data = {
         'bool':bool,
