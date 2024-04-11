@@ -417,7 +417,7 @@ $(document).ready(function(){
 
                 // run def reject_friend_request in views with ajax
                 $(".accept-friend-request-hide"+id).hide()
-                $(".reject-friend-request"+id).html('<i class="fas fa-check-circle"></i> Friend Request Deleted');
+                $(".reject-friend-request").html('<i class="fas fa-check-circle"></i> Friend Remove');
 
             }
         })
@@ -428,18 +428,23 @@ $(document).ready(function(){
     $(document).on("click", "#unfriend", function(){
         let id = $(this).attr("data-unfriend");
         console.log(id);
-
+    
         $.ajax({
             url: "/un-friend/",
             dataType: "json",
             data: {
-                "id":id,
+                "id": id,
             },
             success: function(response){
                 console.log(response);
+    
+                $("#unfriend-text"+id).html('<i class="fas fa-check-circle"></i> Friend Remove');
+                $(".unfriend"+id).addClass("bg-green-600");
+                $(".unfriend"+id).removeClass("bg-red-600");
             }
-        })
-    })
+        });
+    });
+    
     
     
     

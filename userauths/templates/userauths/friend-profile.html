@@ -64,7 +64,7 @@
 
                             <!-- add friend -->
                             {% if profile.user in request.user.profile.friends.all %}
-                                <a id="unfriend" data-unfriend="{{profile.user.id}}" href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-red-600 text-white space-x-1.5 hover:text-white unfriend{{profile.user.id}}"> 
+                                <a id="unfriend" data-unfriend="{{profile.user.id}}" href="#" class="flex items-center justify-center h-10 px-5 rounded-md bg-green-600 text-white space-x-1.5 hover:text-white unfriend{{profile.user.id}}"> 
                                     <span id="unfriend-text"> <i class="fas fa-user-minus"></i> Unfriend </span>
                                 </a>
                             {% else %}
