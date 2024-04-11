@@ -41,6 +41,18 @@ def post_detail(request, slug):
     return render(request, 'core/post_detail.html', context)
 
 
+
+def send_notification(user=None, sender=None, post=None, comment=None, notification_type=None):
+    notification = Notification.objects.create(
+        user=user,
+        sender=sender,
+        post=post,
+        comment=comment,
+        notification_type=notification_type,
+    )
+    return notification
+
+
 @csrf_exempt
 def create_post(request):
     if request.method == "POST":
