@@ -129,7 +129,7 @@ def comment_on_post(request):
     )
     
     if new_comment.user != post.user:
-        send_notification(post.user, user, post, new_comment, noti_new_comment)
+        send_notification(post.user, user, post, new_comment, noti_new_like)
 
     data = {
         'bool' : True,
@@ -156,6 +156,9 @@ def like_comment(request):
     else:
         comment.likes.add(user)
         bool = True
+        
+        if comment.user != user:
+            send_notification(comment.user, user, comment.post, comment, noti_comment_liked)
 
     data = {
         'bool':bool,
