@@ -41,8 +41,8 @@ def post_detail(request, slug):
     return render(request, 'core/post_detail.html', context)
 
 
-
-def send_notification(user=None, sender=None, post=None, comment=None, notification_type=None):
+@login_required
+def send_notification(user, sender, post, comment, notification_type):
     notification = Notification.objects.create(
         user=user,
         sender=sender,
@@ -127,6 +127,9 @@ def comment_on_post(request):
         comment=comment,
         user=user,
     )
+    
+    if new_comment.user != post.user:
+        send_notification(post.user, user, post, new_comment, noti_new_comment)
 
     data = {
         'bool' : True,
