@@ -8,9 +8,19 @@ from django.contrib.auth.decorators import login_required
 
 
 import shortuuid
-from .models import Post, Comment, ReplyComment, Friend, FriendRequest
+from .models import Post, Comment, ReplyComment, Friend, FriendRequest, Notification
 from userauths.models import User
 
+
+
+# Notifications Keys
+noti_new_like = "New Like"
+noti_new_follower = "New Follower"
+noti_friend_request = "Friend Request"
+noti_new_comment = "New Comment"
+noti_comment_liked = "Comment Liked"
+noti_comment_replied = "Comment Replied"
+noti_friend_request_accepted = "Friend Request Accepted"
 
 
 @login_required
