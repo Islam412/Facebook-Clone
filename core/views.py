@@ -263,6 +263,9 @@ def accept_friend_request(request):
     
     friend_request.delete()
     
+    send_notification(sender, receiver, None, None, noti_friend_request_accepted)
+
+    
     data = {
         'message' : 'Accepted',
         'bool' : True,
