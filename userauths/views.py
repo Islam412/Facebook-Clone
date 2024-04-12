@@ -88,7 +88,7 @@ def my_profile(request):
 def friend_profile(request, username):
     profile = Profile.objects.get(user__username=username)
     if request.user.profile == profile:
-        return redirect("core:core")
+        return redirect("userauths:my-profile")
     
     posts = Post.objects.filter(active=True, user=profile.user).order_by("-id")
     

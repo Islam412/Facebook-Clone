@@ -245,7 +245,7 @@ def add_friend(request):
         bool = True
         
         
-        send_notification(comment.user, user, comment.post, comment, noti_friend_request)
+        send_notification(receiver, sender, None, None, noti_friend_request)
             
         return JsonResponse({'success':'Sent', 'bool':bool})
 
