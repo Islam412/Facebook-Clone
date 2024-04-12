@@ -180,6 +180,9 @@ def reply_comment(request):
         reply=reply,
         user=user,
     )
+    
+    if comment.user != user:
+        send_notification(comment.user, user, comment.post, comment, noti_comment_replied)
 
     data = {
         'bool': True,
@@ -240,6 +243,10 @@ def add_friend(request):
         friend_request = FriendRequest(sender=sender, receiver=receiver)
         friend_request.save()
         bool = True
+        
+        
+        send_notification(comment.user, user, comment.post, comment, noti_friend_request)
+            
         return JsonResponse({'success':'Sent', 'bool':bool})
 
 
