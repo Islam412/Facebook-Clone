@@ -41,7 +41,6 @@ def post_detail(request, slug):
     return render(request, 'core/post_detail.html', context)
 
 
-@login_required
 def send_notification(user, sender, post, comment, notification_type):
     notification = Notification.objects.create(
         user=user,
