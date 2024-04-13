@@ -3,6 +3,15 @@
 {% block body %}
 
 <body>
+    
+    <style>
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        summary::marker {
+        content: ""; /* Hide the pseudo-element */
+        }
+    </style>
 
     <div id="wrapper">
 
