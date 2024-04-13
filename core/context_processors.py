@@ -9,7 +9,7 @@ def my_context_processors(request):
         friend_request = None
         
     try:
-        notification = Notification.objects.filter(user=request.user)
+        notification = Notification.objects.filter(user=request.user).order_by("-id")
     except:
         notification = None
 
