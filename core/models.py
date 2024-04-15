@@ -300,6 +300,7 @@ class ChatMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_user")
     sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_sender")
     reciever = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_reciever")
+    message = models.TextField(max_length=1000000)
     is_read = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
     mid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")

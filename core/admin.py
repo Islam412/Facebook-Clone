@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Post, Gallery, FriendRequest, Friend, Comment, ReplyComment, Notification, Group, GroupPost, Page, PagePost
+from core.models import Post, Gallery, FriendRequest, Friend, Comment, ReplyComment, Notification, Group, GroupPost, Page, PagePost, ChatMessage
 
 
 # add many images in the post
@@ -69,6 +69,11 @@ class PageAdmin(admin.ModelAdmin):
     list_editable = ['user', 'name', 'visibility']
     list_display = ['thumbnail', 'user', 'name', 'visibility']
     prepopulated_fields = {"slug": ("name", )}
+    
+
+class ChatMessageAdmin(admin.ModelAdmin):
+    list_editable = ['message']
+    list_display = ['sender', 'reciever', 'message', 'is_read']
 
 
 admin.site.register(Post, PostAdmin)
@@ -82,3 +87,4 @@ admin.site.register(Group, GroupAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(GroupPost)
 admin.site.register(PagePost)
+admin.site.register(ChatMessage, ChatMessageAdmin)
