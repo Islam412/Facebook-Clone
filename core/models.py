@@ -293,3 +293,21 @@ class PagePost(models.Model):
     
     def thumbnail(self):
         return mark_safe('<img src="/media/%s" width="50" height="50" object-fit:"cover" style="border-radius: 5px;" />' % (self.image))
+    
+    
+    
+class ChatMessage(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_user")
+    sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_sender")
+    reciever = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_reciever")
+    is_read = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)
+    mid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
+    
+    def __str__(self):
+        return self.sender
+    
+    class Meta:
+        verbose_name_plural = 'ChatMessage'
+
+    
