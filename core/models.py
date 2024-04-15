@@ -297,7 +297,7 @@ class PagePost(models.Model):
     
     
 class ChatMessage(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_user")
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="chat_user")
     sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_sender")
     reciever = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_reciever")
     message = models.TextField(max_length=1000000)
