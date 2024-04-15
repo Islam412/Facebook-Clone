@@ -297,7 +297,7 @@ class PagePost(models.Model):
     
     
 class ChatMessage(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="chat_user")
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_user")
     sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_sender")
     reciever = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_reciever")
     message = models.TextField(max_length=1000000)
@@ -306,7 +306,7 @@ class ChatMessage(models.Model):
     mid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
     
     def __str__(self):
-        return self.sender
+        return self.sender.username
     
     class Meta:
         verbose_name_plural = 'ChatMessage'
