@@ -295,11 +295,10 @@ class PagePost(models.Model):
         return mark_safe('<img src="/media/%s" width="50" height="50" object-fit:"cover" style="border-radius: 5px;" />' % (self.image))
     
     
-    
 class ChatMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_user")
-    sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_sender")
-    reciever = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_reciever")
+    sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_sender", related_query_name="chat_sender")
+    receiver = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chat_receiver", related_query_name="chat_receiver")
     message = models.TextField(max_length=1000000)
     is_read = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
@@ -309,6 +308,7 @@ class ChatMessage(models.Model):
         return self.sender.username
     
     class Meta:
-        verbose_name_plural = 'ChatMessage'
+        verbose_name_plural = 'ChatMessages'
+
 
     

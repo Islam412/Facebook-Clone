@@ -4,11 +4,12 @@ from django.http import JsonResponse
 from django.utils.timesince import timesince
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.db.models import OuterRef, Subquery, Q, F
 
 
 
 import shortuuid
-from .models import Post, Comment, ReplyComment, Friend, FriendRequest, Notification
+from .models import Post, Comment, ReplyComment, Friend, FriendRequest, Notification, ChatMessage
 from userauths.models import User
 
 
@@ -303,5 +304,29 @@ def unfriend(request):
         my_friend.profile.friends.remove(sender)
         bool = True
         return JsonResponse({"success":"Unfriend Successfully", "bool":bool})
+
+
+
+@login_required
+def inbox(request):
+    user_id = request.user.id  # Use request.user.id instead of request.user
+
+    chat_message = ChatMessage.objects.filter(
+        id__in=Subquery(
+            ChatMessage.objects.filter(
+                Q(sender=user_id) | Q(receiver=user_id)
+            ).distinct().order_by('sender', 'receiver', '-id').values('id')[:1]
+        )
+    ).order_by("-id")
     
+    context = {
+        'chat_message': chat_message,
+    }
+    return render(request, 'chat/inbox.html', context)
+
+
+
+
+
+
     

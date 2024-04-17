@@ -73,7 +73,7 @@ class PageAdmin(admin.ModelAdmin):
 
 class ChatMessageAdmin(admin.ModelAdmin):
     list_editable = ['message']
-    list_display = ['sender', 'reciever', 'message', 'is_read']
+    list_display = ['sender', 'receiver', 'message', 'is_read']
 
 
 admin.site.register(Post, PostAdmin)
