@@ -27,19 +27,38 @@
                             <div class="messages-inbox-inner" data-simplebar>
                                 <ul>
                                     {% for message in chat_message %}
-                                        <li>
-                                            <a href="#">
-                                                <div class="message-avatar"><i class="status-icon status-online"></i><img src="assets/images/avatars/avatar-1.jpg" alt=""></div>
+                                        {% if request.user == message.sender %}
+                                            <li>
+                                                <a href="#">
+                                                    <div class="message-avatar"><i class="status-icon status-online"></i><img src="{{message.receiver.profile.image.url}}" alt=""></div>
 
-                                                <div class="message-by">
-                                                    <div class="message-by-headline">
-                                                        <h5>Stella Johnson</h5>
-                                                        <span>4 hours ago</span>
+                                                    <div class="message-by">
+                                                        <div class="message-by-headline">
+                                                            <h5>{{message.receiver.profile.full_name}}</h5>
+                                                            <span style="font-size: 15px;"><small>{{message.date|timesince}} ago</small></span>
+                                                        </div>
+                                                        <p>{{message.message}}</p>
                                                     </div>
-                                                    <p>laoreet dolore magna aliquam erat volutpat sed diam nonummy</p>
-                                                </div>
-                                            </a>
-                                        </li>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+
+                                        {% if request.user == message.receiver %}
+                                            <li>
+                                                <a href="#">
+                                                    <div class="message-avatar"><i class="status-icon status-online"></i><img src="{{message.sender.profile.image.url}}" alt=""></div>
+
+                                                    <div class="message-by">
+                                                        <div class="message-by-headline">
+                                                            <h5>{{message.sender.profile.full_name}}</h5>
+                                                            <span style="font-size: 15px;"><small>{{message.date|timesince}} ago</small></span>
+                                                        </div>
+                                                        <p>{{message.message}}</p>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        {% endif %} 
+
                                     {% empty %}
                                         <li>
                                             <a href="#">
