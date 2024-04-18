@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import home, create_post, like_post, comment_on_post, like_comment, reply_comment, delete_comment, delete_reply_comment, post_detail, add_friend, accept_friend_request, reject_friend_request, unfriend, inbox
+from .views import home, create_post, like_post, comment_on_post, like_comment, reply_comment, delete_comment, delete_reply_comment, post_detail, add_friend, accept_friend_request, reject_friend_request, unfriend, inbox, inbox_detail
 
 app_name = 'core'
 
@@ -10,6 +10,7 @@ urlpatterns = [
     
     # chat
     path("core/inbox", inbox, name="inbox"),
+    path("core/inbox/<username>", inbox_detail, name="inbox_detail"),
     
     # Ajax urls
     path('create_post/',create_post, name='create_post'),

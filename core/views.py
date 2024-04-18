@@ -325,4 +325,41 @@ def inbox(request):
     return render(request, 'chat/inbox.html', context)
 
 
+@login_required
+def inbox_detail(request, username):
+    user_id = request.user.id  # Use request.user.id instead of request.user
 
+    message_list = ChatMessage.objects.filter(
+        id__in=Subquery(
+            ChatMessage.objects.filter(
+                Q(sender=user_id) | Q(receiver=user_id)
+            ).distinct().order_by('sender', 'receiver', '-id').values('id')[:1]
+        )
+    ).order_by("-id")
+    
+    sender = request.user
+    receiver = User.objects.get(username=username)  # Use User instead of user
+    receiver_detail = User.objects.get(username=username)  # Use User instead of user
+    
+    message_detail = ChatMessage.objects.filter(
+        Q(sender=sender, receiver=receiver) | Q(sender=receiver, receiver=sender)
+    ).order_by("date")
+    
+    message_detail.update(is_read=True)
+    
+    if message_detail:
+        r = message_detail.first()
+        receiver = User.objects.get(username=r.receiver)
+    else:
+        receiver = User.objects.get(username=username)
+    
+    context = {
+        'message_detail': message_detail,  # Correct variable name to message_detail
+        "receiver": receiver,  # Correct variable name to receiver
+        "sender": sender,
+        "receiver_detail": receiver_detail,  # Correct variable name to receiver_detail
+        "message_list": message_list,
+    }
+    return render(request, 'chat/inbox_detail.html', context)
+        
+        
