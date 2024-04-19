@@ -26,7 +26,7 @@
                             </div>
                             <div class="messages-inbox-inner" data-simplebar>
                                 <ul>
-                                    {% for message in chat_message %}
+                                    {% for message in message_list %}
                                         {% if request.user == message.sender %}
                                             <li>
                                                 <a href="#">
@@ -51,7 +51,7 @@
                                                     <div class="message-by">
                                                         <div class="message-by-headline">
                                                             <h5>{{message.sender.profile.full_name}}</h5>
-                                                            <span style="font-size: 15px;"><small>{{message.date|timesince}} ago</small></span>
+                                                            <span style="font-size: 14px;"><small>{{message.date|timesince}} ago</small></span>
                                                         </div>
                                                         <p>{{message.message}}</p>
                                                     </div>
@@ -80,8 +80,10 @@
                         <div class="message-content">
 
                             <div class="messages-headline">
-                                <h4> Stella Johnson </h4>
-                                <a href="#" class="message-action text-red-500"><i class="icon-feather-trash-2"></i> <span class="md:inline hidden"> Delete Conversation</span> </a>
+                                <div class="flex">
+                                    <img class="mr-1" src="{{ receiver_detail.profile.image.url }}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" alt="">
+                                    <h4 class="ml-1"> {{ receiver_detail.profile.full_name|title }} </h4>
+                                </div>                                <a href="#" class="message-action text-red-500"><i class="icon-feather-trash-2"></i> <span class="md:inline hidden"> Delete Conversation</span> </a>
                             </div>
     
                             <div class="message-content-scrolbar" data-simplebar>
@@ -93,86 +95,31 @@
                                     <div class="message-time-sign">
                                         <span>28 June, 2020</span>
                                     </div>
-    
-                                    <div class="message-bubble me">
-                                        <div class="message-bubble-inner">
-                                            <div class="message-avatar"><img src="assets/images/avatars/avatar-2.jpg" alt=""></div>
-                                            <div class="message-text">
-                                                <p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod laoreet.</p>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-    
-                                    <div class="message-bubble">
-                                        <div class="message-bubble-inner">
-                                            <div class="message-avatar"><img src="assets/images/avatars/avatar-2.jpg" alt=""></div>
-                                            <div class="message-text">
-                                                <p>Laoreet. dolore magna imperdiet quod mazim placerat facer possim. 👍</p>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-    
-                                    <div class="message-bubble me">
-                                        <div class="message-bubble-inner">
-                                            <div class="message-avatar"><img src="assets/images/avatars/avatar-2.jpg" alt=""></div>
-                                            <div class="message-text">
-                                                <p>Albuom commodo consequat. 😉</p>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-    
-                                    <!-- Time Sign -->
-                                    <div class="message-time-sign">
-                                        <span>Yesterday</span>
-                                    </div>
-    
-                                    <div class="message-bubble me">
-                                        <div class="message-bubble-inner">
-                                            <div class="message-avatar"><img src="assets/images/avatars/avatar-2.jpg" alt=""></div>
-                                            <div class="message-text">
-                                                <p>Option congue nihil imperdiet mazim placerat facer possim.</p>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-    
-                                    <div class="message-bubble">
-                                        <div class="message-bubble-inner">
-                                            <div class="message-avatar"><img src="assets/images/avatars/avatar-2.jpg" alt=""></div>
-                                            <div class="message-text">
-                                                <p> Nam liber tempor cum soluta nobis eleifend doming id quod mazim placerat 😎</p>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-    
-                                    <div class="message-bubble me">
-                                        <div class="message-bubble-inner">
-                                            <div class="message-avatar"><img src="assets/images/avatars/avatar-2.jpg" alt=""></div>
-                                            <div class="message-text">
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 🙂</p>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-    
-                                    <div class="message-bubble">
-                                        <div class="message-bubble-inner">
-                                            <div class="message-avatar"><img src="assets/images/avatars/avatar-2.jpg" alt=""></div>
-                                            <div class="message-text">
-                                                <!-- Typing Indicator -->
-                                                <div class="typing-indicator">
-                                                    <span></span>
-                                                    <span></span>
-                                                    <span></span>
+
+                                    {% for message in message_detail %}
+                                        {% if message.sender == request.user %}
+                                            <div class="message-bubble me">
+                                                <div class="message-bubble-inner">
+                                                    <div class="message-avatar"><img src="{{message.sender.profile.image.url}}" alt=""></div>
+                                                    <div class="message-text">
+                                                        <p>{{message.message}}</p>
+                                                    </div>
                                                 </div>
+                                                <div class="clearfix"></div>
                                             </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
+                                        {% else %}
+                                            <div class="message-bubble">
+                                                <div class="message-bubble-inner">
+                                                    <div class="message-avatar"><img src="{{message.sender.profile.image.url}}" alt=""></div>
+                                                    <div class="message-text">
+                                                        <p>{{message.message}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+
                                 </div>
                                 <!-- Message Content Inner / End -->
     
