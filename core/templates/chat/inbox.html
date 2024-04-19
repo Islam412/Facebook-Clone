@@ -29,7 +29,7 @@
                                     {% for message in chat_message %}
                                         {% if request.user == message.sender %}
                                             <li>
-                                                <a href="#">
+                                                <a href="{% url 'core:inbox_detail' message.receiver.username %}">
                                                     <div class="message-avatar"><i class="status-icon status-online"></i><img src="{{message.receiver.profile.image.url}}" alt=""></div>
 
                                                     <div class="message-by">
@@ -45,7 +45,7 @@
 
                                         {% if request.user == message.receiver %}
                                             <li>
-                                                <a href="#">
+                                                <a href="{% url 'core:inbox_detail' message.sender.username %}">
                                                     <div class="message-avatar"><i class="status-icon status-online"></i><img src="{{message.sender.profile.image.url}}" alt=""></div>
 
                                                     <div class="message-by">
