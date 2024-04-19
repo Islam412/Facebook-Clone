@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+ASGI_APPLICATIONS = 'project'
+
 import os
 
 # Application definition
@@ -51,6 +53,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'taggit',
     'import_export',
+    'channels',
     
 ]
 
