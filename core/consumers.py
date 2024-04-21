@@ -23,3 +23,36 @@ class ChatConsumer(WebsocketConsumer):
             self.room_group_name,
             self.channel_name,
         )
+        
+    def receive(self, text_data):
+        data = json.loads(text_data)
+        message = data.get('message')
+        sender_username = data.get("sender")
+        
+        try:
+            sender = User.objects.get(username=sender_username)
+            profile =  Profile.objects.get(user=sender)
+            profile_image = profile.image.url
+        except User.DoesNotExist:
+            profile_image = ''
+            
+        receiver = User.objects.get(username=data['receiver'])
+        chat_message = ChatMessage(
+            sender=sender,
+            receiver=receiver,
+            message=message,
+        )
+        chat_message.save()
+        
+        async_to_sync(self.channel_layer.group_send)(
+            {
+                'type':"chat_message",
+                'message':message,
+                'sender':sender,
+                'profile_image':profile_image,
+                'receiver':receiver,
+            }
+        )
+    
+    def chat_message(self,event):
+        self.send(text_data=json.dumps(event))
