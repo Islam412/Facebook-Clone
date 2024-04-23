@@ -54,7 +54,7 @@ def user_directory_path(instance, filename):
 RELATIONSHIP = (
     ("single","Single"),
     ("married","married"),
-    ("inlove","In Love"),
+    ("Egaged","Egaged"),
 )
 
 class Profile(models.Model):
