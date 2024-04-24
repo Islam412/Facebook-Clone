@@ -35,7 +35,7 @@
                                                     <div class="message-by">
                                                         <div class="message-by-headline">
                                                             <h5>{{message.receiver.profile.full_name}}</h5>
-                                                            <span style="font-size: 15px;"><small>{{message.date|timesince}} ago</small></span>
+                                                            <!-- <span style="font-size: 15px;"><small>{{message.date|timesince}} ago</small></span> -->
                                                         </div>
                                                         <p>{{message.message}}</p>
                                                     </div>
@@ -52,7 +52,7 @@
                                                     <div class="message-by">
                                                         <div class="message-by-headline">
                                                             <h5>{{message.sender.profile.full_name}}</h5>
-                                                            <span style="font-size: 14px;"><small>{{message.date|timesince}} ago</small></span>
+                                                            <!-- <span style="font-size: 14px;"><small>{{message.date|timesince}} ago</small></span> -->
                                                         </div>
                                                         <p>{{message.message}}</p>
                                                     </div>
@@ -90,7 +90,7 @@
                             <div class="message-content-scrolbar" data-simplebar>
     
                                 <!-- Message Content Inner -->
-                                <div class="message-content-inner">
+                                <div class="message-content-inner chat_container">
     
 
 
@@ -119,6 +119,7 @@
                                             </div>
                                         {% endif %}
                                     {% endfor %}
+                                    <div id="chat-messages"></div>
 
                                 </div>
                                 <!-- Message Content Inner / End -->
@@ -153,6 +154,36 @@
         
             socket.onopen = function(){
                 console.log("WebSocket connection established.");
+            }
+
+            socket.onmessage = function(event){
+                var data = JSON.parse(event.data);
+                var message = data.message;
+                var sender = data.sender;
+                var profile_image = data.profile_image;
+                var receiver = data.receiver;
+
+                if(sender === "{{sender}}"){
+                    var chatMessage = '<div class="message-bubble me">';
+                    chatMessage += '<div class="message-bubble-inner">'
+                    chatMessage += '<div class="message-avatar"><img src="' + profile_image + '" alt=""></div>'
+                    chatMessage += '<div class="message-text">'
+                    chatMessage += '<p>' + message + '</p>'
+                    chatMessage += '</div>'
+                    chatMessage += '</div>'
+                    chatMessage += '</div>'
+
+                    $("#chat-messages").oppend(ChatMessage)
+                } else {
+                    var chatMessage = '<div class="message-bubble">';
+                    chatMessage += '<div class="message-bubble-inner">'
+                    chatMessage += '<div class="message-avatar"><img src="' + profile_image + '" alt=""></div>'
+                    chatMessage += '<div class="message-text">'
+                    chatMessage += '<p>' + message + '</p>'
+                    chatMessage += '</div>'
+                    chatMessage += '</div>'
+                    chatMessage += '</div>'
+                }
             }
         
             socket.onclose = function(){
