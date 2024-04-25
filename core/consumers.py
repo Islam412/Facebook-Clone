@@ -46,14 +46,16 @@ class ChatConsumer(WebsocketConsumer):
         chat_message.save()
         
         async_to_sync(self.channel_layer.group_send)(
+            self.room_group_name,  # Group name
             {
-                'type':"chat_message",
-                'message':message,
-                'sender':sender,
-                'profile_image':profile_image,
-                'receiver':receiver,
+                'type': 'chat.message',  # Event type
+                'message': message,
+                'sender': sender.username,  # Sender's username only, not the whole object
+                'profile_image': profile_image,
+                'receiver': receiver.username,  # Receiver's username only, not the whole object
             }
         )
-    
-    def chat_message(self,event):
+
+    def chat_message(self, event):
         self.send(text_data=json.dumps(event))
+

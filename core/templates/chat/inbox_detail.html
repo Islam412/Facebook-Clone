@@ -127,8 +127,9 @@
                                 <!-- Reply Area -->
                                 <div class="message-reply">
                                     <textarea id="chat-input" cols="1" rows="1" placeholder="Write Message"></textarea>
-                                    <button id="send-btn" class="button ripple-effect">Send</button>
+                                    <button id="send-btn" class="button ripple-effect" >Send</button>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -140,7 +141,7 @@
         <script>
             var receiver_id = "{{ receiver.username }}"; 
             var logged_in = "{{ request.user.username }}";
-            
+        
             const pathname = window.location.pathname;
             console.log(pathname);
         
@@ -155,41 +156,62 @@
             socket.onopen = function(){
                 console.log("WebSocket connection established.");
             }
-
+        
             socket.onmessage = function(event){
                 var data = JSON.parse(event.data);
                 var message = data.message;
                 var sender = data.sender;
                 var profile_image = data.profile_image;
                 var receiver = data.receiver;
-
-                if(sender === "{{sender}}"){
+        
+                if(sender === "{{ request.user.username }}"){
                     var chatMessage = '<div class="message-bubble me">';
-                    chatMessage += '<div class="message-bubble-inner">'
-                    chatMessage += '<div class="message-avatar"><img src="' + profile_image + '" alt=""></div>'
-                    chatMessage += '<div class="message-text">'
-                    chatMessage += '<p>' + message + '</p>'
-                    chatMessage += '</div>'
-                    chatMessage += '</div>'
-                    chatMessage += '</div>'
-
-                    $("#chat-messages").oppend(ChatMessage)
+                    chatMessage += '<div class="message-bubble-inner">';
+                    chatMessage += '<div class="message-avatar"><img src="' + profile_image + '" alt=""></div>';
+                    chatMessage += '<div class="message-text">';
+                    chatMessage += '<p>' + message + '</p>';
+                    chatMessage += '</div>';
+                    chatMessage += '</div>';
+                    chatMessage += '</div>';
+        
+                    $("#chat-messages").append(chatMessage); // corrected append method name
                 } else {
                     var chatMessage = '<div class="message-bubble">';
-                    chatMessage += '<div class="message-bubble-inner">'
-                    chatMessage += '<div class="message-avatar"><img src="' + profile_image + '" alt=""></div>'
-                    chatMessage += '<div class="message-text">'
-                    chatMessage += '<p>' + message + '</p>'
-                    chatMessage += '</div>'
-                    chatMessage += '</div>'
-                    chatMessage += '</div>'
+                    chatMessage += '<div class="message-bubble-inner">';
+                    chatMessage += '<div class="message-avatar"><img src="' + profile_image + '" alt=""></div>';
+                    chatMessage += '<div class="message-text">';
+                    chatMessage += '<p>' + message + '</p>';
+                    chatMessage += '</div>';
+                    chatMessage += '</div>';
+                    chatMessage += '</div>';
+                    $("#chat-messages").append(chatMessage); // corrected append method name
                 }
             }
         
             socket.onclose = function(){
                 console.log("WebSocket connection closed..");
             }
+        
+        
+            // send message
+            $("#send-btn").on("click", function(){
+                var input = $("#chat-input");
+                var message = input.val();
+                var sender = "{{ request.user.username }}";
+                var data = {
+                    'message': message,
+                    'sender': sender,
+                    'receiver': username,
+                };
+                socket.send(JSON.stringify(data));
+                input.val("");
+                var sendButton = $("#send-btn");
+                sendButton.prop("disabled", true);
+                console.log("Message sent");
+            });
+        
         </script>
+        
         
         
 
