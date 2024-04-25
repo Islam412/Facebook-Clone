@@ -172,8 +172,8 @@
                     chatMessage += '<p>' + message + '</p>';
                     chatMessage += '</div>';
                     chatMessage += '</div>';
+                    chatMessage += '<div class="clearfix"></div>';
                     chatMessage += '</div>';
-        
                     $("#chat-messages").append(chatMessage); // corrected append method name
                 } else {
                     var chatMessage = '<div class="message-bubble">';
@@ -183,6 +183,7 @@
                     chatMessage += '<p>' + message + '</p>';
                     chatMessage += '</div>';
                     chatMessage += '</div>';
+                    chatMessage += '<div class="clearfix"></div>';
                     chatMessage += '</div>';
                     $("#chat-messages").append(chatMessage); // corrected append method name
                 }
@@ -205,8 +206,8 @@
                 };
                 socket.send(JSON.stringify(data));
                 input.val("");
-                var sendButton = $("#send-btn");
-                sendButton.prop("disabled", true);
+                {% comment %} var sendButton = $("#send-btn");
+                sendButton.prop("disabled", true); {% endcomment %}
                 console.log("Message sent");
             });
         
