@@ -305,8 +305,11 @@ class ChatMessage(models.Model):
     mid = ShortUUIDField(length=7, max_length=25, alphabet="abcdefghijklmnopqrstuvwxyz1234567890")
     
     def __str__(self):
-        return self.user.username
-    
+        if self.user:
+            return self.user.username
+        else:
+            return "Unknown User"
+
     class Meta:
         ordering = ["-date"]
         verbose_name_plural = 'Personal Chat'

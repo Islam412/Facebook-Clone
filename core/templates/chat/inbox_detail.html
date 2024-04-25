@@ -206,10 +206,15 @@
                 };
                 socket.send(JSON.stringify(data));
                 input.val("");
-                {% comment %} var sendButton = $("#send-btn");
-                sendButton.prop("disabled", true); {% endcomment %}
+                var sendButton = $('#send-btn');
+                sendButton.prop('disabled', true);
+                $(".chat_container").scrollTop(100000000000);
                 console.log("Message sent");
             });
+
+            $(document).ready(function() {
+                $(".chat_container").scrollTop(100000000000);
+              });
         
         </script>
         
