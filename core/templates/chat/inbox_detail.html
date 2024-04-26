@@ -84,7 +84,11 @@
                                 <div class="flex">
                                     <img class="mr-1" src="{{ receiver_detail.profile.image.url }}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" alt="">
                                     <h4 class="ml-1"> {{ receiver_detail.profile.full_name|title }} </h4>
-                                </div>                                <a href="#" class="message-action text-red-500"><i class="icon-feather-trash-2"></i> <span class="md:inline hidden"> Delete Conversation</span> </a>
+                                </div>
+                                {% if receiver_detail in request.user.profile.friends.all %}
+                                    <a href="#" id="block-user-btn" data-block-user="{{receiver_detail.id}}" class="message-action text-red-500 "><i class="fas fa-ban"></i> <span class="md:inline hidden block-text{{receiver_detail.id}}" > Block {{ receiver_detail.profile.full_name|title }}</span> </a>
+                                {% endif %}
+                            
                             </div>
     
                             <div class="message-content-scrolbar" data-simplebar>
@@ -212,9 +216,28 @@
                 console.log("Message sent");
             });
 
-            $(document).ready(function() {
-                $(".chat_container").scrollTop(100000000000);
-              });
+            // Block User
+            $(document).on("click", "#block-user-btn", function(){
+                let id = $(this).attr("data-block-user");
+                console.log(id);
+            
+                $.ajax({
+                    url: "/block_user/",
+                    dataType: "json",
+                    beforeSend: function(){
+                        $("#block-user-btn").html("<i class='fas fa-spinner fa-spin'></i>");
+                    },
+                    data: {
+                        "id": id,
+                    },
+                    success: function(response){
+                        console.log(response);
+                        $(".block-text").html("<i class='fas fa-check-circle'></i> User Blocked successfully.");
+                    }
+                });
+            });
+            
+            
         
         </script>
         

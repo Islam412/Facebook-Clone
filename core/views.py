@@ -354,28 +354,29 @@ def inbox_detail(request, username):
         receiver = User.objects.get(username=username)
     
     context = {
-        'message_detail': message_detail,  # Correct variable name to message_detail
-        "receiver": receiver,  # Correct variable name to receiver
+        'message_detail': message_detail,
+        "receiver": receiver, 
         "sender": sender,
-        "receiver_detail": receiver_detail,  # Correct variable name to receiver_detail
+        "receiver_detail": receiver_detail,
         "message_list": message_list,
     }
     return render(request, 'chat/inbox_detail.html', context)
         
         
 def block_user(request):
-    id = request.GET["id"]
+    id = request.GET['id']
     user = request.user
     friend = User.objects.get(id=id)
-    
+
     if user.id == friend.id:
-        return JsonResponse({"error": "You Cannot block yourself"})
-    
+        return JsonResponse({'error': 'You cannot block yourself'})
+
+
     if friend in user.profile.friends.all():
         user.profile.blocked.add(friend)
         user.profile.friends.remove(friend)
-        user.profile.friends.remove(user)
+        friend.profile.friends.remove(user)
     else:
-        return JsonResponse({"error": "You Cannot block some that is not your friend"})
-    
-    return JsonResponse({"success": "User Blocked"})
+        return JsonResponse({'error': 'You cannot block someone that is not your friend'})
+
+    return JsonResponse({'success': 'User Blocked'})

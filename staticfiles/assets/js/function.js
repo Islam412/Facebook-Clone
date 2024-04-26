@@ -444,6 +444,13 @@ $(document).ready(function(){
             }
         });
     });
+
+
+
+    // block friends
+    $(document).on("click", "#block-user-btn", function(){
+        console.log("Block User");
+    });
     
     
     
