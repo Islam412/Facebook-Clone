@@ -1,7 +1,7 @@
-#🌐 Django Social Media
+# 🌐 Django Social Media
 
 
-##🌐 Facebook Clone
+# 🌐 Facebook Clone
 
 ## Description
 
