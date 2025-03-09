@@ -1,3 +1,3 @@
-🌐 Django Socialmedia
+🌐 Django Social Media
 
 🌐 Facebook Clone
